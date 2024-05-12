@@ -1,0 +1,33 @@
+body {
+    background-color: #9DB2BF;
+}
+
+.btn-custom {
+    background-color: #526D82; 
+    color: white;            
+    border: 1px solid #DDE6ED; 
+
+}
+
+/* Custom Navbar Styles */
+.navbar {
+    background-color: #526D82 !important; /* Dark background color */
+    color: #fff !important; /* White text color */
+}
+
+.navbar .navbar-brand,
+.navbar .nav-link {
+    color: #ffffff !important; /* Ensuring the text color is white for all navigation items */
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
+    color: #ffffff !important; /* Lighter shade for hover/focus states */
+}
+
+
+
+
+
+
+
