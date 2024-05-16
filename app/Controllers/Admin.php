@@ -26,12 +26,18 @@ class Admin extends BaseController
         return view('admin/login'); 
     }
 
-    // //Responsible for dashboard page view 
+     //Responsible for dashboard page view / Handle both controllers
     public function dashboard() {
-        //$model = new NaftemporikiModel();
-        $model = new KathimeriniModel();
-       
-        $newsItems = $model->getAllNews(); 
+        $Naftemporiki = new NaftemporikiModel();
+        $Kathimerini = new KathimeriniModel();
+
+        $newsItems1 = $Kathimerini->getAllNews(); 
+        $newsItems2 = $Naftemporiki->getAllNews();
+        
+        //Merge the data
+
+        $newsItems = array_merge($newsItems1, $newsItems2);
+
         return view('admin/dashboard', ['news' => $newsItems]);
     }
 
