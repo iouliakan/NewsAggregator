@@ -20,7 +20,7 @@
                         <a class="nav-link" href="<?= site_url('naftemporiki/index'); ?>">Scrape Naftemporiki</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= site_url(''); ?>">Scrape Kathimerini</a>
+                        <a class="nav-link" href="<?= site_url('kathimerini/index'); ?>">Scrape Kathimerini</a>
                     </li>
                 </ul>
             </div>

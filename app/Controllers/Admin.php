@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
 use App\Models\AdminModel;
 use App\Models\NaftemporikiModel;
+use App\Models\KathimeriniModel; 
 use App\Libraries\Hash;
 
 class Admin extends BaseController
@@ -27,7 +28,9 @@ class Admin extends BaseController
 
     // //Responsible for dashboard page view 
     public function dashboard() {
-        $model = new NaftemporikiModel();
+        //$model = new NaftemporikiModel();
+        $model = new KathimeriniModel();
+       
         $newsItems = $model->getAllNews(); 
         return view('admin/dashboard', ['news' => $newsItems]);
     }

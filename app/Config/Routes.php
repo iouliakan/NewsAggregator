@@ -32,6 +32,7 @@ $routes->post('/delete/(:num)', 'Admin::delete/$1', ['filter' => 'csrf']);
 
 
 
-
+//Route responsible for the Kathimerini controller 
+$routes->get('kathimerini/index','Kathimerini::index'); 
  
 
