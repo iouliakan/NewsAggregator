@@ -115,8 +115,15 @@ class Admin extends BaseController
                  public function read($Id)
                  {
                      // Fetch the news item using the ID
-                     $newsModel = new \App\Models\NaftemporikiModel();
-                     $newsItem = $newsModel->find($Id);
+                     $newsModel1 = new \App\Models\NaftemporikiModel();
+                     $newsModel2 = new  \App\Models\KathimeriniModel();
+                    
+                     $newsItem1 = $newsModel1->find($Id);
+                     $newsItem2 = $newsModel2->find($Id); 
+
+
+                     $newsItem = $newsItem1 ?? $newsItem2;
+
              
                      // Check if the news item exists
                      if (!$newsItem) {
@@ -130,8 +137,16 @@ class Admin extends BaseController
 
                  public function confirmDelete($Id)
                  {
-                     $newsModel = new \App\Models\NaftemporikiModel();
-                     $newsItem = $newsModel->find($Id);
+                     $newsModel1 = new \App\Models\NaftemporikiModel();
+                     $newsModel2 = new  \App\Models\KathimeriniModel();
+                     
+
+
+                     $newsItem1 = $newsModel1->find($Id);
+                     $newsItem2 = $newsModel2->find($Id); 
+
+
+                     $newsItem = $newsItem1 ?? $newsItem2;
 
                     if (!$newsItem) {
                          return redirect()->to('admin/dashboard')->with('message', 'News item not found.');
@@ -144,13 +159,26 @@ class Admin extends BaseController
 
                  public function delete($Id)
                  {
-                      $newsModel = new \App\Models\NaftemporikiModel();
+                      $newsModel1 = new \App\Models\NaftemporikiModel();
+                      $newsModel2 = new  \App\Models\KathimeriniModel();
 
-                    if (!$newsModel->find($Id)) {
+                      
+                     $newsItem1 = $newsModel1->find($Id);
+                     $newsItem2 = $newsModel2->find($Id); 
+
+
+                    
+
+                    if (!$newsItem1 && !$newsItem2) {
                       return redirect()->to('admin/dashboard')->with('error', 'News item not found.');
                     }
 
-                    $newsModel->delete($Id);
+                    if ($newsItem1) {
+                        $newsModel1->delete($Id);
+                    }
+                    if ($newsItem2) {
+                        $newsModel2->delete($Id);
+                    }
 
                 return redirect()->to('admin/dashboard')->with('message', 'News item successfully deleted.');
                 }
