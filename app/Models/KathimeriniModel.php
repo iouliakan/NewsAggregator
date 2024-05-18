@@ -69,4 +69,38 @@ class KathimeriniModel extends Model
     public function getAllNews() {
         return $this->orderBy('date_time', 'desc')->findAll(); 
     }
+
+
+
+
+    //later for create function  
+    // public function add_news() {
+    //     return $this->db
+    //                     ->table('kathimerini')
+    //                     ->get()
+    //                     ->getResult();
+    // }
+
+
+
+
+    public function get_news($Id) {
+        return $this->db
+                        ->table('kathimerini')
+                        ->where(["Id" => $Id])
+                        ->get()
+                        ->getRow();
+    }
+
+    public function update($Id = null, $data = null): bool
+    {
+        if ($Id === null || $data === null) {
+            return false;
+        }
+
+        return $this->db->table($this->table)
+            ->where($this->primaryKey, $Id)
+            ->set($data)
+            ->update();
+    }
 }

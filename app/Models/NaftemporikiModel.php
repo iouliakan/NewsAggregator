@@ -72,7 +72,29 @@ class NaftemporikiModel extends Model
         return $this->orderBy('date_time', 'desc')->findAll();  // This assumes 'date_time' is the column you want to sort by
     }
 
+
+
+
     
+    public function get_news($Id) {
+        return $this->db
+                        ->table('naftemporiki')
+                        ->where(["Id" => $Id])
+                        ->get()
+                        ->getRow();
+    }
+
+    public function update($Id = null, $data = null): bool
+    {
+        if ($Id === null || $data === null) {
+            return false;
+        }
+
+        return $this->db->table($this->table)
+            ->where($this->primaryKey, $Id)
+            ->set($data)
+            ->update();
+    }
 
 
 

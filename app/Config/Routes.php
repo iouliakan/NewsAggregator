@@ -37,8 +37,7 @@ $routes->get('kathimerini/index','Kathimerini::index');
  
 
 //Update News Routes
-
-$routes->get('admin/updateNews/(:num)', 'Admin::updateNews/$1'); // Route for the update form (GET request)
-$routes->post('admin/updateNews/(:num)', 'Admin::updateNews/$1'); // Route to handle the update action (POST request)
+$routes->get('admin/edit/(:num)', 'Admin::edit/$1');
+$routes->post('/updateNews', 'Admin:: updateNews');
 
 

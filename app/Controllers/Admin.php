@@ -12,11 +12,19 @@ use App\Libraries\Hash;
 class Admin extends BaseController
 {
     
-      
-        //Enabling features 
+    
+
+    protected $KathimeriniModel;
+    protected $NaftemporikiModel; 
+
     public function __construct()
     {
-        helper(['url','form']); 
+        // Load the necessary helpers
+        helper(['url', 'form']);
+
+        // Initialize the KathimeriniModel
+        $this->KathimeriniModel = new KathimeriniModel();
+        $this->NaftemporikiModel = new NaftemporikiModel();
     }
       
 
@@ -186,22 +194,73 @@ class Admin extends BaseController
                     if ($newsItem2) {
                         $newsModel2->delete($Id);
                     }
-
-                return redirect()->to('admin/dashboard')->with('message', 'News item successfully deleted.');
+                 session()->setFlashdata('success', 'News has been deleted successfully');
+                return redirect()->to('admin/dashboard'); 
+                 
                 }
 
 
 
-                public function updateNews($Id)
-                 {
+
+
+                public function edit($Id)
+                {
+                    // Retrieve data from both models
+                    $newsItem1 = $this->KathimeriniModel->get_news($Id);
+                    $newsItem2 = $this->NaftemporikiModel->get_news($Id);
+            
+                    $newsItem = $newsItem1 ?? $newsItem2;
+            
+                    if (!$newsItem) {
+                        return redirect()->to('admin/dashboard')->with('message', 'News item not found.');
+                    }
+            
+                    $modelType = $newsItem1 ? 'kathimerini' : 'naftemporiki';
+            
+                    // Pass the news item and model type to the view
+                    return view('admin/updateNews', ['item' => $newsItem, 'modelType' => $modelType]);
+                }
+            
+                public function updateNews()
+                {
+                    $Id = $this->request->getPost('Id');
+                    $title = $this->request->getPost('title');
+                    $date_time = $this->request->getPost('date_time');
+                    $html_content = $this->request->getPost('html_content');
+                    $modelType = $this->request->getPost('modelType'); // Get the model type from the POST data
+            
+                    $data = [
+                        'title' => $title,
+                        'date_time' => $date_time,
+                        'html_content' => $html_content,
+                    ];
+            
+                    // Update using the specified model
+                    if ($modelType === 'kathimerini') {
+                        $item = $this->KathimeriniModel->update($Id, $data);
+                    } elseif ($modelType === 'naftemporiki') {
+                        $item = $this->NaftemporikiModel->update($Id, $data);
+                    } else {
+                        throw new \Exception("Invalid model type specified");
+                    }
+            
+                    if ($item) {
+                        session()->setFlashdata('success', 'News has been updated successfully');
+                        return redirect()->to('admin/dashboard');
+                    } else {
+                        session()->setFlashdata('fail', 'Something went wrong');
+                        return redirect()->back();
+                    }
+                }
+                }
                     
-                 }
+                 
 
 
                 
 
 
-                }
+                
 
 
 

@@ -39,6 +39,18 @@
         </div>
     </nav>
 
+    <div class="container mt-3">
+        <?php if (!empty(session()->getFlashdata('success'))): ?>
+            <div class="alert alert-success w-auto mx-auto">
+                <?= session()->getFlashdata('success') ?>
+            </div>
+        <?php elseif (!empty(session()->getFlashdata('fail'))): ?>
+            <div class="alert alert-danger w-auto mx-auto">
+                <?= session()->getFlashdata('fail') ?>
+            </div>
+        <?php endif; ?>
+    </div>
+
     <div class="container mt-5">
         <div class="table-responsive">
             <table class="table table-striped">
@@ -76,7 +88,9 @@
                      <td><a href="<?= base_url('admin/read/' . $item['Id']); ?>" ><i class="fa-brands fa-readme fa-2x" style="color: #000000;"></i> </a></td>
                  </td>
                  <!-- Update -->
-                 <td><a href="<?= base_url('admin/update/' . $item['Id']); ?>" ><i class="fa-solid fa-wrench fa-2x" style="color: #000000;"></i> </a></td>
+                 <td>  
+                 <a href="<?= base_url('admin/edit/'.$item['Id']); ?>" ><i class="fa-solid fa-wrench fa-2x" style="color: #000000;"></i> </a>
+                </td>
                  <!-- Delete -->
                  <td><a href="<?= base_url('admin/confirmDelete/' . $item['Id']); ?>"> <i class="fa-solid fa-trash fa-2x" style="color: #000000;"></i> </a>
                 </td>
