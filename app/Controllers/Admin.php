@@ -42,6 +42,13 @@ class Admin extends BaseController
     }
 
 
+    //Responsible for update button 
+
+    public function update(){
+        return view('admin/updateNews'); 
+    }
+
+
 
 
     public function loginAdmin() {
@@ -182,6 +189,22 @@ class Admin extends BaseController
 
                 return redirect()->to('admin/dashboard')->with('message', 'News item successfully deleted.');
                 }
-    }
+
+
+
+                public function updateNews($Id)
+                 {
+                    
+                 }
+
+
+                
+
+
+                }
+
+
+
+    
 
 

@@ -5,23 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?= base_url('css/style.css'); ?>" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/96b895edc6.js" crossorigin="anonymous"></script>
     <title>Admin Dashboard</title>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">News Dashboard</a>
+            <a class="navbar-brand" href="#"><i class="fa-solid fa-bars" style="color: #000000;"></i> News Dashboard</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= site_url('naftemporiki/index'); ?>">Scrape Naftemporiki</a>
+                        <a class="nav-link" href="<?= site_url('naftemporiki/index'); ?>"> <i class="fa-sharp fa-solid fa-circle-play" style="color: #000000;"></i> Naftemporiki</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= site_url('kathimerini/index'); ?>">Scrape Kathimerini</a>
+                        <a class="nav-link" href="<?= site_url('kathimerini/index'); ?>"><i class="fa-sharp fa-solid fa-circle-play" style="color: #000000;"></i> Kathimerini</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">
+                            <i class="fa-solid fa-plus " style="color: #000000;"></i> Create News
+                        </a>
+
+                    </li>
+                    </ul>
+                    <ul class="navbar-nav ms-auto">
+                    <a class="nav-link" href="">
+                    <i class="fa-solid fa-right-from-bracket fa-2x" style="color: #000000;"></i> 
+                    </a>
                 </ul>
             </div>
         </div>
@@ -58,11 +70,15 @@
             </td>
                      <td><?= esc($item['summary']); ?></td>
                      <td><?= esc($item['tags']); ?></td>
-                     <td><a href="<?= esc($item['url']); ?>" class="btn btn-light ">Site</a></td> 
-                     <td><a href="<?= base_url('admin/read/' . $item['Id']); ?>" class="btn btn-dark">Read</a></td>
+                     <!-- link for the site-->
+                     <td><a href="<?= esc($item['url']); ?>" > <i class="fa-solid fa-link fa-lg" style="color: #000000;"></i></a></td> 
+                     <!-- Read -->
+                     <td><a href="<?= base_url('admin/read/' . $item['Id']); ?>" ><i class="fa-brands fa-readme fa-2x" style="color: #000000;"></i> </a></td>
                  </td>
-                 <td><button type="button" class="btn btn-secondary">Update</button></td>
-                 <td><a href="<?= base_url('admin/confirmDelete/' . $item['Id']); ?>" class="btn btn-danger">Delete</a>
+                 <!-- Update -->
+                 <td><a href="<?= base_url('admin/update/' . $item['Id']); ?>" ><i class="fa-solid fa-wrench fa-2x" style="color: #000000;"></i> </a></td>
+                 <!-- Delete -->
+                 <td><a href="<?= base_url('admin/confirmDelete/' . $item['Id']); ?>"> <i class="fa-solid fa-trash fa-2x" style="color: #000000;"></i> </a>
                 </td>
          </tr>
               <?php endforeach; ?>
