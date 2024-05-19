@@ -30,8 +30,9 @@
 
                     </li>
                     </ul>
+                    <!-- log-out -->
                     <ul class="navbar-nav ms-auto">
-                    <a class="nav-link" href="">
+                    <a class="nav-link" href="<?= site_url('admin/logout'); ?>">
                     <i class="fa-solid fa-right-from-bracket fa-2x" style="color: #000000;"></i> 
                     </a>
                 </ul>

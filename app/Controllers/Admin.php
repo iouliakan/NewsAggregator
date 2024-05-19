@@ -18,24 +18,40 @@ class Admin extends BaseController
     protected $NaftemporikiModel; 
 
     public function __construct()
-    {
+ {
+
+         //load the session library
+         session(); 
+
         // Load the necessary helpers
         helper(['url', 'form']);
 
         // Initialize the KathimeriniModel
         $this->KathimeriniModel = new KathimeriniModel();
         $this->NaftemporikiModel = new NaftemporikiModel();
+
+       
+       
     }
-      
+   
 
      //Responsible for login page view 
      public function login()
     {
+        
+        return view('admin/login'); 
+    }
+
+    public function logout() {
+        
+        session()->destroy; 
         return view('admin/login'); 
     }
 
      //Responsible for dashboard page view / Handle both controllers
     public function dashboard() {
+
+
         $Naftemporiki = new NaftemporikiModel();
         $Kathimerini = new KathimeriniModel();
 
