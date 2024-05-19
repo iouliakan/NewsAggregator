@@ -75,7 +75,7 @@ class NaftemporikiModel extends Model
 
 
 
-    
+
     public function get_news($Id) {
         return $this->db
                         ->table('naftemporiki')
@@ -95,6 +95,8 @@ class NaftemporikiModel extends Model
             ->set($data)
             ->update();
     }
+
+    
 
 
 

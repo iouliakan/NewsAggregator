@@ -41,3 +41,6 @@ $routes->get('admin/edit/(:num)', 'Admin::edit/$1');
 $routes->post('/updateNews', 'Admin:: updateNews');
 
 
+//Create News 
+$routes->get('admin/create', 'Admin::create'); 
+$routes->post('admin/createNews', 'Admin::createNews'); 

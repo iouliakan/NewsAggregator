@@ -57,6 +57,12 @@ class Admin extends BaseController
     }
 
 
+    //Responsible for create News 
+    public function create() {
+        return view('admin/createNews'); 
+    }
+
+
 
 
     public function loginAdmin() {
@@ -252,7 +258,47 @@ class Admin extends BaseController
                         return redirect()->back();
                     }
                 }
-                }
+
+                public function createNews()
+                       {
+                          $title = $this->request->getPost('title');
+                          $date_time = $this->request->getPost('date_time');
+                          $html_content = $this->request->getPost('html_content');
+                          $category =  $this->request->getPost('category'); 
+                          $summary =  $this->request->getPost('summary'); 
+                          $tags =  $this->request->getPost('tags'); 
+                          
+                          $modelType = $this->request->getPost('modelType'); // Get the model type from the POST data
+
+                         $data = [
+                                'title' => $title,
+                                'date_time' => $date_time,
+                                'html_content' => $html_content,
+                                'category'=> $category,
+                                'summary' => $summary, 
+                                'tags' => $tags
+
+
+                         ];
+
+                        // Save using the specified model
+                       if ($modelType === 'kathimerini') {
+                            $item = $this->KathimeriniModel->insert($data);
+                        } elseif ($modelType === 'naftemporiki') {
+                           $item = $this->NaftemporikiModel->insert($data);
+                        } else {
+                            throw new \Exception("Invalid model type specified");
+                        }
+
+                       if ($item) {
+                         session()->setFlashdata('success', 'News has been created successfully');
+                         return redirect()->to('admin/dashboard');
+                        } else {
+                         session()->setFlashdata('fail', 'Something went wrong');
+                         return redirect()->back();
+                         }
+                    }
+        }
                     
                  
 
