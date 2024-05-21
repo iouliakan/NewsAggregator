@@ -24,7 +24,7 @@
                     </a>
                 </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= site_url('kathimerini/index'); ?>"><i class="fa-sharp fa-solid fa-circle-play" style="color: #000000;"></i> Kathimerini</a>
+                        <a class="nav-link" href="" data-bs-toggle="modal" data-bs-target="#scrapeModal" data-url="<?= site_url('kathimerini/index'); ?>"><i class="fa-sharp fa-solid fa-circle-play" style="color: #000000;"></i> Kathimerini</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?= site_url('admin/create'); ?>">

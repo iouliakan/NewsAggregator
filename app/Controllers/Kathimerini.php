@@ -59,11 +59,30 @@ class Kathimerini extends BaseController
 
 
     public function index() {
+
+
+        $numPages = $this->request->getPost('numPages');
+        if (!$numPages) {
+        return redirect()->back()->with('error', 'Please provide the number of pages.');
+    }
+
+
+
         $model = new KathimeriniModel();
         $client = new Client();
-        $url = "https://www.kathimerini.gr/epikairothta/";
+        $baseUrl = "https://www.kathimerini.gr/epikairothta/page/";
     
         try {
+
+            $allNewsData = [];
+            $processedLinks = [];
+
+
+
+            for ($page = 1; $page <= $numPages; $page++) {
+                $url = $baseUrl . $page;
+                log_message('debug', 'Fetching URL: ' . $url);
+
             $response = $client->request('GET', $url);
             $html = (string) $response->getBody();
             log_message('debug', 'Fetched HTML: ' . $html);
@@ -73,19 +92,25 @@ class Kathimerini extends BaseController
           
            
             // Define the main selector for news items
-            $newsItems = $crawler->filter('.nx-article.p-0.mb-5.pb-5.is-flex.column.is-full.cat-template3')->each(function (Crawler $node) use ($client, $model) {
-    
-                // Log the raw HTML of each news item
-                log_message('debug', 'News item HTML: ' . $node->html());
+            $newsItems = $crawler->filter('.nx-article.p-0.mb-5.pb-5.is-flex.column.is-full.cat-template3')->each(function (Crawler $node) use ($client, $model, $processedLinks) {
     
                 // Updated selectors based on provided HTML structure
                 $title = $node->filter('.card-title')->count() ? $node->filter('.card-title')->text() : null;
+                $linkPart = $node->filter('.py-4.mainlink')->count() ? $node->filter('.py-4.mainlink')->attr('href') : null;
+                $link = $linkPart ? 'https://www.kathimerini.gr' . $linkPart : null;
                 $url = $node->filter('.py-4.mainlink')->count() ? $node->filter('.py-4.mainlink')->attr('href') : null;
                 $date_time = $node->filter('.posted-on time')->count() ? $node->filter('.posted-on time')->text() : null;
                 $category = $this->extractCategoryFromUrl($url);
                 $Image = $node->filter('figure img')->count() ? $node->filter('figure img')->attr('src') : 'default_image.jpg';
              
     
+
+                 // Ensure the link is unique
+                 if ($link && !in_array($link, $processedLinks)) {
+                    log_message('debug', 'Processing news item with link: ' . $link);
+
+
+
                 $newsData = [
                     'title' => $title,
                     'url' => $url,
@@ -98,7 +123,7 @@ class Kathimerini extends BaseController
                 ];
     
                 // Fetch detail page content
-                if ($url) {
+                 
                     try {
                         $detailedResponse = $client->request('GET', $url);
                         $detailedHtml = (string) $detailedResponse->getBody();
@@ -126,14 +151,23 @@ class Kathimerini extends BaseController
                     } catch (\Exception $e) {
                         log_message('error', "Failed fetching or parsing detailed page for {$url}: " . $e->getMessage());
                     }
+
+
+
+                    $processedLinks[] = $link;
+                    $model->saveNews($newsData);
+                    return $newsData;
+
+                } else {
+                    log_message('debug', 'Skipping duplicate news item with link: ' . $link);
                 }
     
                 $model->saveNews($newsData);
                 return $newsData;
             });
     
-            // Remove null entries from $newsItems array
-            $newsItems = array_filter($newsItems);
+            $allNewsData = array_merge($allNewsData, $newsItems);
+        }
     
             $newsItems = $model->getAllNews();  // Fetch all news from the database
             $session = session();
