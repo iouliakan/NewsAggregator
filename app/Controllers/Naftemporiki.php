@@ -31,11 +31,28 @@ class Naftemporiki extends BaseController
     }
 
     public function index() {
+
+
+
+        $numPages = $this->request->getPost('numPages');
+        if (!$numPages) {
+            return redirect()->back()->with('error', 'Please provide the number of pages.');
+        }
+
+
+
         $model = new NaftemporikiModel();
         $client = new Client();
-        $url = "https://www.naftemporiki.gr/newsroom/";
+        $baseUrl = "https://www.naftemporiki.gr/newsroom/page/";
+
 
         try {
+            $allNewsData = []; // empty array to store all news items
+            $processedLinks = []; //array to track processed news links
+
+
+        for ($page = 1; $page <= $numPages; $page++) {
+            $url = $baseUrl . $page; //URL for each page
             $response = $client->request('GET', $url);
             $html = (string) $response->getBody();
             $crawler = new Crawler($html);
@@ -47,9 +64,10 @@ class Naftemporiki extends BaseController
                 'div.content'
             ];
 
-            $newsItems = $crawler->filter('.item.item-stream.position-relative')->each(function (Crawler $node) use ($client, $url, $model, $selectors) {
+            $newsItems = $crawler->filter('.item.item-stream.position-relative')->each(function (Crawler $node) use ($client, $url, $model, $selectors, &$processedLinks) {
                 $title = $node->filter('h3.item-title a')->count() ? $node->filter('h3.item-title a')->text() : null;
-                $link = $node->filter('h3.item-title a')->count() ? $url . $node->filter('h3.item-title a')->attr('href') : null;
+                $linkPart = $node->filter('h3.item-title a')->count() ? $node->filter('h3.item-title a')->attr('href') : null;
+                $link = $linkPart ? 'https://www.naftemporiki.gr' . $linkPart : null; // Construct the full link
                 $date = $node->filter('time.item-published')->count() ? $node->filter('time.item-published')->text() : null;
                 $category = $node->filter('a.category-link-post')->count() ? $node->filter('a.category-link-post')->text() : null;
                 $image = $node->filter('.item-image.mb-2 a img')->count() ? $node->filter('.item-image.mb-2 a img')->attr('src') : null;
@@ -66,7 +84,9 @@ class Naftemporiki extends BaseController
                     'tags' => ''
                 ];
 
-                if ($link) {
+                // we want the link to be unique 
+                if ($link && !in_array($link, $processedLinks)) {
+                    
                     try {
                         $detailedResponse = $client->request('GET', $link);
                         $detailedHtml = (string) $detailedResponse->getBody();
@@ -79,10 +99,29 @@ class Naftemporiki extends BaseController
                         log_message('error', "Failed fetching or parsing detailed page for {$link}: " . $e->getMessage());
                         $newsData['html_content'] = 'Failed to fetch detailed content';
                     }
-                }
 
-                $model->saveNews($newsData);
+
+
+                    $processedLinks[] = $link; // Add the link to processed links
+                    $model->saveNews($newsData); // Save each news item immediately
+                    return $newsData;  // Correctly return the individual news item
+
+                } 
+                
+               
+            
             });
+
+            $allNewsData = array_merge($allNewsData, $newsItems);  // Merge to get all unique news items
+        }
+
+
+             // Save all unique news items to the database
+            foreach ($allNewsData as $newsItem) {
+                 $model->saveNews($newsItem);
+        }
+
+
 
             $newsItems = $model->getAllNews();  // Fetch all news from the database
             $session = session();
@@ -94,4 +133,6 @@ class Naftemporiki extends BaseController
             return view('admin/dashboard', ['error' => 'Unable to fetch news data']);
         }
     }
+
 }
+

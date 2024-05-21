@@ -26,6 +26,35 @@ body {
 }
 
 
+.modal-content {
+    background-color: #4682b4; /* Light blue */
+}
 
 
+.modal-header {
+    background-color: #4682b4; /* Steel blue */
+    color: #ffffff; /* White text */
+}
 
+
+/* Custom styles for icon buttons */
+.icon-button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.icon-button:focus {
+    outline: none;
+}
+
+.icon-button i {
+    font-size: 1.5rem; /* Adjust the icon size if needed */
+    color: #000000; /* Icon color */
+}
+
+/* Optionally add hover effects */
+.icon-button:hover i {
+    color: #4682b4; /* Change color on hover */
+}

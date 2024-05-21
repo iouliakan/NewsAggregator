@@ -17,9 +17,12 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?= site_url('naftemporiki/index'); ?>"> <i class="fa-sharp fa-solid fa-circle-play" style="color: #000000;"></i> Naftemporiki</a>
-                    </li>
+                <li class="nav-item">
+                    <!-- The data-url attribute stores the URL for form action -->
+                    <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#scrapeModal" data-url="<?= site_url('naftemporiki/index'); ?>">
+                        <i class="fa-sharp fa-solid fa-circle-play" style="color: #000000;"></i> Naftemporiki
+                    </a>
+                </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?= site_url('kathimerini/index'); ?>"><i class="fa-sharp fa-solid fa-circle-play" style="color: #000000;"></i> Kathimerini</a>
                     </li>
@@ -36,9 +39,60 @@
                     <i class="fa-solid fa-right-from-bracket fa-2x" style="color: #000000;"></i> 
                     </a>
                 </ul>
+           </div>
+        </div>
+     
+    </nav>
+  <!-- Modal structure -->
+<div class="modal fade" id="scrapeModal" tabindex="-1" aria-labelledby="scrapeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="scrapeModalLabel"><i class="fa-solid fa-file-circle-plus" style="color: #000000;"></i> Pages</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="scrapeForm" method="post">
+                    <div class="form-group">
+                        <label for="numPages">How many pages would you like to scrape?</label>
+                        <input type="number" class="form-control" id="numPages" name="numPages" min="1" value="1">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <!-- Close button -->
+                <button type="button" class="icon-button" data-bs-dismiss="modal">
+                    <i class="fa-solid fa-circle-xmark" style="color: #000000;"></i>
+                </button>
+                <!-- Run button -->
+                <button type="button" class="icon-button" id="runScrape">
+                    <i class="fa-solid fa-circle-check" style="color: #000000;"></i>
+                </button>
             </div>
         </div>
-    </nav>
+    </div>
+</div>
+
+<!-- Add this script at the end of the body -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Set the form action when the modal is shown
+        var scrapeModal = document.getElementById('scrapeModal');
+        scrapeModal.addEventListener('show.bs.modal', function(event) {
+            var button = event.relatedTarget; // Button that triggered the modal
+            var url = button.getAttribute('data-url'); // Extract info from data-* attributes
+            var form = document.getElementById('scrapeForm');
+            form.setAttribute('action', url);
+        });
+
+        // Handle form submission
+        var runButton = document.getElementById('runScrape');
+        runButton.addEventListener('click', function() {
+            var form = document.getElementById('scrapeForm');
+            form.submit();
+        });
+    });
+</script>
 
     <div class="container mt-3">
         <?php if (!empty(session()->getFlashdata('success'))): ?>

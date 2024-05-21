@@ -17,7 +17,9 @@ $routes->get('admin/dashboard', 'Admin::dashboard');
 $routes->get('admin/dashboard', 'Admin::logout');
 
 //Route Responsible for the Naftemporiki controller
+$routes->post('naftemporiki/index', 'Naftemporiki::index');
 $routes->get('naftemporiki/index', 'Naftemporiki::index');
+
 
 
 
