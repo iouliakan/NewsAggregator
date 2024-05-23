@@ -7,6 +7,10 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->setAutoRoute(true);
 
+
+//Route for localhost page->mainPage
+$routes->get('/', 'Home::index');
+
 //Route responsible for the login
 $routes->post('admin/loginAdmin','Admin::loginAdmin');
 $routes->get('admin/login', 'Admin::login');

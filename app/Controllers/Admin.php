@@ -58,6 +58,16 @@ class Admin extends BaseController
         $newsItems1 = $Kathimerini->getAllNews(); 
         $newsItems2 = $Naftemporiki->getAllNews();
         
+
+        //source identifier to each news item
+    foreach ($newsItems1 as &$item) {
+        $item['source'] = 'Kathimerini';
+    }
+    foreach ($newsItems2 as &$item) {
+        $item['source'] = 'Naftemporiki';
+    }
+
+
         //Merge the data
 
         $newsItems = array_merge($newsItems1, $newsItems2);

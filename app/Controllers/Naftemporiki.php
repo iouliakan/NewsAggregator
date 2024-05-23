@@ -51,8 +51,15 @@ class Naftemporiki extends BaseController
             $processedLinks = []; //array to track processed news links
 
 
+            // Fetch the first page to get the logo
+        //    $logoUrl = $this->fetchLogoUrl($client, 'https://www.naftemporiki.gr');
+        //    log_message('debug', 'Fetched logo URL: ' . $logoUrl);
+
+
         for ($page = 1; $page <= $numPages; $page++) {
             $url = $baseUrl . $page; //URL for each page
+            log_message('debug', 'Fetching URL: ' . $url);
+
             $response = $client->request('GET', $url);
             $html = (string) $response->getBody();
             $crawler = new Crawler($html);
@@ -67,11 +74,34 @@ class Naftemporiki extends BaseController
             $newsItems = $crawler->filter('.item.item-stream.position-relative')->each(function (Crawler $node) use ($client, $url, $model, $selectors, &$processedLinks) {
                 $title = $node->filter('h3.item-title a')->count() ? $node->filter('h3.item-title a')->text() : null;
                 $linkPart = $node->filter('h3.item-title a')->count() ? $node->filter('h3.item-title a')->attr('href') : null;
-                $link = $linkPart ? 'https://www.naftemporiki.gr' . $linkPart : null; // Construct the full link
+                $link = $linkPart ? (strpos($linkPart, 'http') === 0 ? $linkPart : 'https://www.naftemporiki.gr' . $linkPart) : null;
                 $date = $node->filter('time.item-published')->count() ? $node->filter('time.item-published')->text() : null;
                 $category = $node->filter('a.category-link-post')->count() ? $node->filter('a.category-link-post')->text() : null;
                 $image = $node->filter('.item-image.mb-2 a img')->count() ? $node->filter('.item-image.mb-2 a img')->attr('src') : null;
                 $summary = $node->filter('div.item-small')->count() ? trim($node->filter('div.item-small')->text()) : null;
+
+
+
+                 // Log each extracted item
+                 log_message('debug', 'Extracted news item: ' . json_encode([
+                    'title' => $title,
+                    'link' => $link,
+                    'date' => $date,
+                    'category' => $category,
+                    'image' => $image,
+                    'summary' => $summary
+                ]));
+
+
+
+
+                // Ensure the link and other critical elements are not null
+                if ($link && !in_array($link, $processedLinks)) {
+                    log_message('debug', 'Processing news item with link: ' . $link);
+
+
+
+
 
                 $newsData = [
                     'title' => $title,
@@ -84,8 +114,8 @@ class Naftemporiki extends BaseController
                     'tags' => ''
                 ];
 
-                // we want the link to be unique 
-                if ($link && !in_array($link, $processedLinks)) {
+                 
+               
                     
                     try {
                         $detailedResponse = $client->request('GET', $link);
@@ -103,36 +133,64 @@ class Naftemporiki extends BaseController
 
 
                     $processedLinks[] = $link; // Add the link to processed links
+                    
                     $model->saveNews($newsData); // Save each news item immediately
-                    return $newsData;  // Correctly return the individual news item
+                    // return $newsData;  // Correctly return the individual news item
 
-                } 
+                }  else {
+                    log_message('debug', 'Skipping news item due to missing data or duplicate link: ' . $link);
+                }
                 
                
             
             });
-
-            $allNewsData = array_merge($allNewsData, $newsItems);  // Merge to get all unique news items
+            // Merge to get all unique news items
+            if (is_array($newsItems)) {
+                $allNewsData = array_merge($allNewsData, $newsItems);
+            } else {
+                log_message('error', 'Expected newsItems to be an array but got: ' . gettype($newsItems));
+            }
         }
 
-
-             // Save all unique news items to the database
-            foreach ($allNewsData as $newsItem) {
-                 $model->saveNews($newsItem);
+           
+         // Save all unique news items to the database
+         
+          foreach ($allNewsData as $newsItem) {
+            if (isset($newsItem)) {
+                $model->saveNews($newsItem);
+            } else {
+                log_message('error', 'Attempted to save a null news item');
+            }
         }
 
-
+           
 
             $newsItems = $model->getAllNews();  // Fetch all news from the database
             $session = session();
             $session->set('news', $newsItems);
+            $session->set('source', 'Naftemporiki');
             $news = $session->get('news');
-            return view('admin/dashboard', ['news' => $news]);
+            
+            return view('admin/dashboard', ['news' => $news ]);
         } catch (\Exception $e) {
             log_message('error', 'Failed fetching newsroom page: ' . $e->getMessage());
             return view('admin/dashboard', ['error' => 'Unable to fetch news data']);
         }
     }
+
+
+    //     private function fetchLogoUrl(Client $client, $url) {
+    //         try {
+    //             $response = $client->request('GET', $url);
+    //             $html = (string) $response->getBody();
+    //             $crawler = new Crawler($html);
+    //             $logoUrl = $crawler->filter('.header-logo a img')->attr('src');
+    //             return $logoUrl;
+    //         } catch (\Exception $e) {
+    //             log_message('error', 'Failed fetching logo: ' . $e->getMessage());
+    //             return null;
+    //         }
+    // }
 
 }
 

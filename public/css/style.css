@@ -58,3 +58,11 @@ body {
 .icon-button:hover i {
     color: #4682b4; /* Change color on hover */
 }
+
+.px-custom {
+    padding-left: 12rem;  /* Adjust this value as needed */
+    padding-right: 12rem; /* Adjust this value as needed */
+}
+
+
+

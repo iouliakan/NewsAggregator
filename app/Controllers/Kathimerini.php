@@ -119,7 +119,8 @@ class Kathimerini extends BaseController
                     'Image' => $Image,
                     'summary' => '',
                     'html_content' => '',
-                    'tags' => ''
+                    'tags' => '', 
+                    'source' => 'Kathimerini'
                 ];
     
                 // Fetch detail page content
@@ -172,6 +173,7 @@ class Kathimerini extends BaseController
             $newsItems = $model->getAllNews();  // Fetch all news from the database
             $session = session();
             $session->set('news', $newsItems);
+            $session->set('source', 'Kathimerini');
             $news = $session->get('news');
 
 

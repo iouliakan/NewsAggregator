@@ -106,11 +106,13 @@
         <?php endif; ?>
     </div>
 
-    <div class="container mt-5">
+    <div class="container-fluid mt-5 px-custom">
         <div class="table-responsive">
-            <table class="table table-striped">
-                <thead>
+            <table class="table  table-striped">
+                <thead class="custom-thead">
                     <tr>
+                        <th><i class="fa-solid fa-arrow-down-wide-short" style="color: #000000;"></i></th>
+                        <th>Newspaper</th>
                         <th>Title</th>
                         <th>Date/Time</th>
                         <th>Category</th>
@@ -119,14 +121,18 @@
                         <th>Tags</th>
                         <th>Url</th>
                         <th>Content</th>
-                        <th>Action</th>
+                        <th>Update</th>
+                        <th>Delete</th>
                     
                     </tr>
                 </thead>
                 <tbody>
                 <?php if (isset($news) && is_array($news) && !empty($news)): ?>
+                    <?php $counter = 1; // Initialize the counter ?>
                  <?php foreach ($news as $item): ?>
-                   <tr>
+                    
+                   <td><?= $counter; ?> </td> 
+                   <td><?= isset($item['source']) ? esc($item['source']) : session()->get('source'); ?></td>
                      <td><?= esc($item['title']); ?></td>
                      <td><?= esc($item['date_time']); ?></td>
                      <td><?= esc($item['category']); ?></td>
@@ -149,7 +155,9 @@
                  <!-- Delete -->
                  <td><a href="<?= base_url('admin/confirmDelete/' . $item['Id']); ?>"> <i class="fa-solid fa-trash fa-2x" style="color: #000000;"></i> </a>
                 </td>
+              
          </tr>
+         <?php $counter++; // Increment the counter ?>
               <?php endforeach; ?>
        <?php else: ?>
       <tr><td colspan="8">No news found.</td></tr>
