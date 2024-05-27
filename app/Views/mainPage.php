@@ -65,6 +65,9 @@
                         <span>News Aggregator</span>
                     </a>
                 </div>
+                <div class="ms-auto">
+                    <a class="nav-link" href="<?= site_url('admin/login') ?>"> <i class="fa-solid fa-right-to-bracket fa-lg" style="color: #000000;"></i> Login</a>
+                </div>
             </div>
         </nav>
     </div>
