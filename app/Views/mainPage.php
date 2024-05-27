@@ -38,55 +38,38 @@
 
     <body>
     <div class="container-fluid px-0">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light w-100">
-        <div class="container-fluid px-0">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav"> 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa-solid fa-bars fa-2xl" style="color: #fffff;"></i>   
-                        </a>
-                        <div class="dropdown-menu p-3" aria-labelledby="navbarDropdownMenuLink">
-                            <div class="row">
-                                <a class="dropdown-item col-4" href="#">World</a>
-                                <a class="dropdown-item col-4" href="#">Culture</a>
-                                <a class="dropdown-item col-4" href="#">Society</a>
-                                <a class="dropdown-item col-4" href="#">Economy</a>
-                                <a class="dropdown-item col-4" href="#">Life</a>
-                                <a class="dropdown-item col-4" href="#">Politics</a>
-                                <a class="dropdown-item col-4" href="#">History</a>
-                                <a class="dropdown-item col-4" href="#">Athletics</a>
-                                <a class="dropdown-item col-4" href="#">Business</a>
-                                <a class="dropdown-item col-4" href="#">Technology</a>
-                                <a class="dropdown-item col-4" href="#">Music</a>
-                                <a class="dropdown-item col-4" href="#">Shipping</a>
-                                <a class="dropdown-item col-4" href="#">Events</a>
-                                <a class="dropdown-item col-4" href="#">International</a>
-                                <a class="dropdown-item col-4" href="#">Theatre</a>
-                                <a class="dropdown-item col-4" href="#">Opinions</a>
-                                <a class="dropdown-item col-4" href="#">Nature</a>
-                                <a class="dropdown-item col-4" href="#">Health</a>
-                                <a class="dropdown-item col-4" href="#">Museums</a>
-                                <a class="dropdown-item col-4" href="#">Cinema</a>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light w-100">
+            <div class="container-fluid px-0">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-bars fa-2xl" style="color: #000;"></i>
+                            </a>
+                            <div class="dropdown-menu p-3" aria-labelledby="navbarDropdownMenuLink">
+                                <div class="row">
+                                <?php foreach ($categoryMapping as $displayCategory => $dbCategories): ?>
+                                        <a class="dropdown-item col-4" href="<?= base_url('category/' . urlencode($displayCategory)) ?>"><?= $displayCategory ?></a>
+                                    <?php endforeach; ?>
+                                </div>
                             </div>
-                        </div>
-                    </li>
-                </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="navbar-center mx-auto">
+                    <a class="navbar-brand" href="#">
+                        <img src="<?= base_url('images/logo.png') ?>" alt="Logo" height="40">
+                        <span>News Aggregator</span>
+                    </a>
+                </div>
             </div>
-            <div class="navbar-center mx-auto">
-                <a class="navbar-brand" href="#">
-                    <img src="<?= base_url('images/logo.png') ?>" alt="Logo" height="40">
-                    <span>News Aggregator</span>
-                </a>
-            </div>
-        </div>
-    </nav>
-</div>
-    
-<div class="container mt-4">
+        </nav>
+    </div>
+
+    <div class="container mt-4">
         <?php if (isset($groupedNews) && !empty($groupedNews)): ?>
             <?php foreach ($groupedNews as $category => $newsItems): ?>
                 <div class="section-title">
@@ -100,12 +83,13 @@
                                 <div class="card-body">
                                     <h5 class="card-title"><?= esc($news['title']) ?></h5>
                                     <p class="card-text"><?= esc($category) ?></p>
+                                    <a href="<?= base_url('read/' . $news['Id']) ?>" class="btn btn-primary">Read more</a>
                                 </div>
                             </div>
                         </div>
                     <?php endforeach; ?>
                 </div>
-                <a href="#" class="btn btn-link">View all</a>
+                
             <?php endforeach; ?>
         <?php else: ?>
             <p>No news found.</p>

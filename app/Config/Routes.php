@@ -10,8 +10,10 @@ $routes->setAutoRoute(true);
 
 //Route for localhost page->mainPage
 $routes->get('/', 'Home::index');
-// $routes->get('fetchNews/(:num)', 'Home::fetchNews/$1');
 
+
+$routes->get('category/(:segment)', 'Home::category/$1');
+$routes->get('read/(:num)', 'Home::read/$1');
 
 
 
