@@ -10,6 +10,14 @@ $routes->setAutoRoute(true);
 
 //Route for localhost page->mainPage
 $routes->get('/', 'Home::index');
+// $routes->get('fetchNews/(:num)', 'Home::fetchNews/$1');
+
+
+
+
+
+
+
 
 //Route responsible for the login
 $routes->post('admin/loginAdmin','Admin::loginAdmin');
@@ -55,3 +63,7 @@ $routes->post('/updateNews', 'Admin:: updateNews');
 //Create News 
 $routes->get('admin/create', 'Admin::create'); 
 $routes->post('admin/createNews', 'Admin::createNews'); 
+
+
+
+

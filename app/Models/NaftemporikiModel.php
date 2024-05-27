@@ -96,6 +96,11 @@ class NaftemporikiModel extends Model
             ->update();
     }
 
+
+    public function fetchTheNews($Id)
+    {
+        return $this->where('Id', $Id)->findAll();
+    }
     
 
 

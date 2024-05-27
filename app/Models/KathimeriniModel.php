@@ -103,4 +103,7 @@ class KathimeriniModel extends Model
             ->set($data)
             ->update();
     }
+
+   
+    
 }
