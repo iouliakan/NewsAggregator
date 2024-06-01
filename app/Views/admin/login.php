@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Login Form</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://kit.fontawesome.com/96b895edc6.js" crossorigin="anonymous"></script>
 <link href="<?= base_url('css/style.css'); ?>" rel="stylesheet">
 
 
@@ -92,10 +93,61 @@
         border-radius: 25px; /* Make the input fields rounded */
         border: 2px solid #0c2854;
     }
+
+.navbar {
+    overflow: hidden; /* Prevent overflow */
+    padding: 15px 0; /* Add vertical padding for more space */
+    height: 65px; /* Increase the height of the navbar */
+    background-color:#346a88 !important;
+}
+
+.navbar-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto; /* Ensure the container is the full width */
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap; /* Prevent the text from wrapping */
+}
+
+.navbar-brand img {
+    max-height: 60px; /* Adjust as needed for larger logo */
+    margin-right: 10px; /* Space between the logo and site name */
+}
+
+.container-fluid.px-0 {
+    padding-left: 0;
+    padding-right: 0;
+}
     </style>
 </head>
 <body>
 <img src="/images/image2.png" alt="Background Image" class="background-image">
+
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid px-0">
+    <div class="navbar-center mx-auto">
+      <a class="navbar-brand" href="#">
+        <img src="<?= base_url('images/logo.png') ?>" alt="Logo" height="40">
+        <span>News Aggregator</span>
+      </a>
+    </div>
+    <div class="ml-auto">
+                    <a class="nav-link" href="<?= site_url('') ?>"> <i class="fa-solid fa-circle-left fa-xl" style="color: #ffffff;"></i> </a>
+                </div>
+  </div>
+</nav>
+
+
+
 <div class="container mt-5">
     <div class="login-form-container">
     <div class="card-header text-center">
