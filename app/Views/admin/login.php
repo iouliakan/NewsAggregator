@@ -96,7 +96,7 @@
 
 .navbar {
     overflow: hidden; /* Prevent overflow */
-    padding: 15px 0; /* Add vertical padding for more space */
+    padding: 5px 0; /* Add vertical padding for more space */
     height: 65px; /* Increase the height of the navbar */
     background-color:#346a88 !important;
 }
