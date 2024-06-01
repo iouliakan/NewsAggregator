@@ -7,6 +7,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="<?= base_url('css/style.css'); ?>" rel="stylesheet">
 
+
 <style>
          body, html {
         margin: 0;
@@ -36,7 +37,7 @@
         height: 50%;
         max-width: 550px;
         padding: 20px 20px 40px 20px;
-        background-color: rgba(255, 255, 255, 0.9);
+        background-color: #f0f5f1;
         border-radius: 55px;
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
         border: 2px solid #0c2854;
@@ -49,7 +50,9 @@
 
     .card-body {
         padding-top: 60px; /* Adjust this padding to move the form contents down */
-        border-radius: 45px; 
+        border-radius: 55px;
+        /* border: 2px solid #0c2854; */
+    
     }
 
     .form-label {
@@ -58,13 +61,36 @@
 
     ::placeholder {
         font-weight: bold; /* Make placeholder text bold */
+        
     }
 
-    .card-header {
-        font-weight: bold; /* Make the card header text bold */
+
+
+    .card{
+        border-radius: 55px;
+        background-color:#f0f5f1; 
+      
+       
+       
+      
+    }
+
+    
+    .card-header.text-center {
+         font-weight: bold; 
+         border-radius: 55px; 
+         margin-bottom: 20px; 
+         border: 2px solid #0c2854;
     }
     .btn-custom {
         font-weight: bold; /* Make the button text bold */
+        border-radius: 15px;
+        border: 2px solid #0c2854;
+    }
+
+    .form-control {
+        border-radius: 25px; /* Make the input fields rounded */
+        border: 2px solid #0c2854;
     }
     </style>
 </head>
@@ -72,10 +98,12 @@
 <img src="/images/image2.png" alt="Background Image" class="background-image">
 <div class="container mt-5">
     <div class="login-form-container">
-            <div class="card ">
-                <div class="card-header text-center">
+    <div class="card-header text-center">
                    Admin Login
                 </div>
+
+            <div class="card ">
+                
                 <?php 
                     if(session()->getFlashdata('success')){
                         echo "<div class='alert alert-success'>" . session()->getFlashdata('success') . "</div>";
