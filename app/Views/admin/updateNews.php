@@ -6,6 +6,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?= base_url('css/style.css'); ?>" rel="stylesheet">
     <title>Update News</title>
+    <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
 </head>
 
 <body>
@@ -39,7 +40,10 @@
                     </div>
                     <div class="mb-3">
                         <label for="html_content" class="form-label"><strong>Content:</strong></label>
-                        <textarea name="html_content" class="form-control" id="html_content" rows="10"><?= $item->html_content ?></textarea>
+                        <textarea name="html_content" class="form-control" id="html_content" rows="10"><?= htmlspecialchars($item->html_content) ?></textarea>
+                        <script>
+                            CKEDITOR.replace('html_content');
+                        </script>
                     </div>
 
                     <div class="mb-3">
