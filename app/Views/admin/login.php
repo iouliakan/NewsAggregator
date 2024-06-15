@@ -32,9 +32,9 @@
     }
     .login-form-container {
         position: absolute;
-        top: 65%; /* Adjust the value to center vertically */
+        top: 70%; /* Adjust the value to center vertically */
         left: 50%; /* Adjust the value to center horizontally */
-        width: 38%; /* Adjust the value according to the background square size */
+        width: 45%; /* Adjust the value according to the background square size */
         height: 50%;
         max-width: 550px;
         padding: 20px 20px 40px 20px;
@@ -42,7 +42,7 @@
         border-radius: 55px;
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
         border: 2px solid #0c2854;
-        transform: translate(-50%, -110%);
+        transform: translate(-45%, -110%);
 
 
     }
@@ -130,7 +130,7 @@
     </style>
 </head>
 <body>
-<img src="/images/image2.png" alt="Background Image" class="background-image">
+<img src="/images/backgroundImage.png" alt="Background Image" class="background-image">
 
 <nav class="navbar navbar-light bg-light">
   <div class="container-fluid px-0">
