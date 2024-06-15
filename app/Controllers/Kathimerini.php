@@ -12,22 +12,39 @@ use App\Models\KathimeriniModel;
 
 class Kathimerini extends BaseController
 {
+    private function cleanHtmlContent($html_content) {
+        // Αφαιρεί τα <script> tags και το περιεχόμενό τους
+        $html_content = preg_replace('/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/i', '', $html_content);
+        // Αφαιρεί τα <style> tags και το περιεχόμενό τους
+        $html_content = preg_replace('/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/i', '', $html_content);
+        // Αφαιρεί όλα τα HTML σχόλια
+        $html_content = preg_replace('/<!--.*?-->/', '', $html_content);
+         // Αφαιρεί links
+        $html_content = preg_replace('/<a\b[^<]*(?:(?!<\/a>)<[^<]*)*<\/a>/i', '', $html_content);
+        // Αφαιρεί εικόνες
+        $html_content = preg_replace('/<img\b[^>]*>/i', '', $html_content);
+        // Αφαιρεί div με την κλάση 'column social-share-wrapper'
+        $html_content = preg_replace('/<div class="column social-share-wrapper\b[^<]*(?:(?!<\/div>)<[^<]*)*<\/div>/i', '', $html_content);
+        // Αφαιρεί div με την κλάση 'tags-wrapper'
+        $html_content = preg_replace('/<div class="tags-wrapper\b[^<]*(?:(?!<\/div>)<[^<]*)*<\/div>/i', '', $html_content);
+        // Αφαιρεί div με την κλάση 'comments-icon-wrapper'
+        $html_content = preg_replace('/<div class="comments-icon-wrapper\b[^<]*(?:(?!<\/div>)<[^<]*)*<\/div>/i', '', $html_content);
+         // Αφαιρεί το span που περιέχει τη λέξη 'Σχόλια'
+         $html_content = preg_replace('/<span class="comments-icon[^>]*>[^<]*Σχόλια[^<]*<\/span>/i', '', $html_content);
+        // Αφαιρεί οποιοδήποτε div που περιέχει το 'Σχόλια'
+        $html_content = preg_replace('/<div[^>]*>[^<]*Σχόλια[^<]*<\/div>/i', '', $html_content);
+         // Αφαιρεί οποιοδήποτε span που περιέχει το 'Σχόλια'
+         $html_content = preg_replace('/<span[^>]*>[^<]*Σχόλια[^<]*<\/span>/i', '', $html_content);
+        // Μετατρέπει τις HTML οντότητες σε κανονικούς χαρακτήρες
+        $html_content = html_entity_decode($html_content);
+        // Αφαιρεί περιττά κενά στην αρχή και στο τέλος του κειμένου
+        $html_content = trim($html_content);
+    
+        // Επιστρέφει το καθαρισμένο περιεχόμενο χωρίς να αφαιρεί τα HTML tags για παραγράφους, λίστες κλπ.
+        return $html_content;
+    }
+    
 
-        private function cleanHtmlContent($html_content) {
-            // Αφαιρεί τα <script> tags και το περιεχόμενό τους
-            $html_content = preg_replace('/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/i', '', $html_content);
-            // Αφαιρεί τα <style> tags και το περιεχόμενό τους
-            $html_content = preg_replace('/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/i', '', $html_content);
-            // Αφαιρεί όλα τα HTML σχόλια
-            $html_content = preg_replace('/<!--.*?-->/', '', $html_content);
-            // Μετατρέπει τις HTML οντότητες σε κανονικούς χαρακτήρες
-            $html_content = html_entity_decode($html_content);
-            // Αφαιρεί περιττά κενά στην αρχή και στο τέλος του κειμένου
-            $html_content = trim($html_content);
-            
-            // Επιστρέφει το καθαρισμένο περιεχόμενο χωρίς να αφαιρεί τα HTML tags για παραγράφους, λίστες κλπ.
-            return $html_content;
-        }
 
     private function extractContentUsingSelectors($html, $selectors) {
         $crawler = new Crawler($html);
