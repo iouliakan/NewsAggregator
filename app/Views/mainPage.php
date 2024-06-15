@@ -60,7 +60,7 @@
                     </ul>
                 </div>
                 <div class="navbar-center mx-auto">
-                    <a class="navbar-brand" href="#">
+                    <a class="navbar-brand" href="<?= base_url("/") ?>">
                         <img src="<?= base_url('images/logo.png') ?>" alt="Logo" height="40">
                         <span>News Aggregator</span>
                     </a>

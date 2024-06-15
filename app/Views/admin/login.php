@@ -135,8 +135,8 @@
 <nav class="navbar navbar-light bg-light">
   <div class="container-fluid px-0">
     <div class="navbar-center mx-auto">
-      <a class="navbar-brand" href="#">
-        <img src="<?= base_url('images/logo.png') ?>" alt="Logo" height="40">
+      <a class="navbar-brand" href="<?= base_url("/") ?>">
+        <img src="<?= base_url('images/logo.png') ?> " alt="Logo" height="40">
         <span>News Aggregator</span>
       </a>
     </div>

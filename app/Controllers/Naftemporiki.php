@@ -9,26 +9,43 @@ use App\Models\NaftemporikiModel;
 class Naftemporiki extends BaseController
 {
     private function cleanHtmlContent($html_content) {
+        // Αφαιρεί τα <script> tags και το περιεχόμενό τους
         $html_content = preg_replace('/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/i', '', $html_content);
+        // Αφαιρεί τα <style> tags και το περιεχόμενό τους
         $html_content = preg_replace('/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/i', '', $html_content);
+        // Αφαιρεί όλα τα HTML σχόλια
         $html_content = preg_replace('/<!--.*?-->/', '', $html_content);
-        $html_content = strip_tags($html_content);
+        // Αφαιρεί τα στοιχεία share και social media links
+        $html_content = preg_replace('/<div class="(mt-auto share-post-links entry-share|google-news-wrap.*?)">(.*?)<\/div>/is', '', $html_content);
+        // Αφαιρεί τα elements που δεν είναι εικόνες
+        $html_content = preg_replace('/<nav class="related-links my-5">(.*?)<\/nav>/is', '', $html_content);
+        // Αφαιρεί όλες τις εικόνες
+        $html_content = preg_replace('/<img\b[^>]*>/i', '', $html_content);
+        
+        $html_content = preg_replace('/<a\b[^<]*(?:(?!<\/a>)<[^<]*)*<\/a>/i', '', $html_content);
+        // Μετατρέπει τις HTML οντότητες σε κανονικούς χαρακτήρες
         $html_content = html_entity_decode($html_content);
+        // Αφαιρεί περιττά κενά στην αρχή και στο τέλος του κειμένου
         $html_content = trim($html_content);
-        $html_content = preg_replace('/\s+/', ' ', $html_content);
+        // Αφαιρεί λέξεις-κλειδιά όπως "naftemporiki" ή "kathimerini"
+        $html_content = preg_replace('/\b(naftemporiki.gr)\b/i', '', $html_content);
+        // Επιστρέφει το καθαρισμένο περιεχόμενο χωρίς να αφαιρεί τα HTML tags για παραγράφους, λίστες κλπ.
         return $html_content;
     }
 
-    private function extractContentUsingSelectors($html, $selectors) {
-        $crawler = new Crawler($html);
-        foreach ($selectors as $selector) {
-            if ($crawler->filter($selector)->count()) {
-                $raw_html_content = $crawler->filter($selector)->html();
-                return $this->cleanHtmlContent($raw_html_content);
-            }
+   private function extractContentUsingSelectors($html, $selectors) {
+    $crawler = new Crawler($html);
+    foreach ($selectors as $selector) {
+        if ($crawler->filter($selector)->count()) {
+            $raw_html_content = $crawler->filter($selector)->html();
+            $cleaned_content = $this->cleanHtmlContent($raw_html_content);
+            return $cleaned_content;
         }
-        return 'No content available';  // Return this if no content is found
     }
+    return 'No content available';  // Return this if no content is found
+}
+   
+    
 
     public function index() {
 
@@ -51,10 +68,7 @@ class Naftemporiki extends BaseController
             $processedLinks = []; //array to track processed news links
 
 
-            // Fetch the first page to get the logo
-        //    $logoUrl = $this->fetchLogoUrl($client, 'https://www.naftemporiki.gr');
-        //    log_message('debug', 'Fetched logo URL: ' . $logoUrl);
-
+         
 
         for ($page = 1; $page <= $numPages; $page++) {
             $url = $baseUrl . $page; //URL for each page
@@ -120,7 +134,9 @@ class Naftemporiki extends BaseController
                     try {
                         $detailedResponse = $client->request('GET', $link);
                         $detailedHtml = (string) $detailedResponse->getBody();
+                        log_message('debug', 'Detailed HTML before cleaning: ' . $detailedHtml);
                         $newsData['html_content'] = $this->extractContentUsingSelectors($detailedHtml, $selectors);
+                        log_message('debug', 'Cleaned HTML Content: ' . $newsData['html_content']);
                         $detailedCrawler = new Crawler($detailedHtml);
                         $newsData['tags'] = implode(', ', $detailedCrawler->filter('nav.related-links ul li a')->each(function (Crawler $tagNode) {
                             return trim($tagNode->text());
@@ -157,6 +173,7 @@ class Naftemporiki extends BaseController
          
           foreach ($allNewsData as $newsItem) {
             if (isset($newsItem)) {
+                log_message('debug', 'Saving news item: ' . json_encode($newsItem));
                 $model->saveNews($newsItem);
             } else {
                 log_message('error', 'Attempted to save a null news item');
@@ -178,19 +195,6 @@ class Naftemporiki extends BaseController
         }
     }
 
-
-    //     private function fetchLogoUrl(Client $client, $url) {
-    //         try {
-    //             $response = $client->request('GET', $url);
-    //             $html = (string) $response->getBody();
-    //             $crawler = new Crawler($html);
-    //             $logoUrl = $crawler->filter('.header-logo a img')->attr('src');
-    //             return $logoUrl;
-    //         } catch (\Exception $e) {
-    //             log_message('error', 'Failed fetching logo: ' . $e->getMessage());
-    //             return null;
-    //         }
-    // }
 
 }
 
