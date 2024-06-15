@@ -22,7 +22,7 @@
     </div>
 
     <?php if ($item): ?>
-        <form method="post" action="<?= base_url('admin/updateNews') ?>">
+        <form method="post" action="<?= base_url('admin/updateNews') ?>"  enctype="multipart/form-data">
             <div class="container mt-5 mb-5">
                 <div class="border border-5 p-3">
                     <div class="border-bottom pb-3 mb-3">
@@ -41,6 +41,31 @@
                         <label for="html_content" class="form-label"><strong>Content:</strong></label>
                         <textarea name="html_content" class="form-control" id="html_content" rows="10"><?= $item->html_content ?></textarea>
                     </div>
+
+                    <div class="mb-3">
+                        <label for="summary" class="form-label"><strong>Summary:</strong></label>
+                        <textarea name="summary" class="form-control" id="summary" rows="4"><?= $item->summary ?></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="tags" class="form-label"><strong>Tags:</strong></label>
+                        <textarea name="tags" class="form-control" id="tags" rows="1"><?= $item->tags ?></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="category" class="form-label"><strong>Category:</strong></label>
+                        <textarea name="category" class="form-control" id="category" rows="1"><?= $item->category ?></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="imageFile" class="form-label"><strong>Upload New Image:</strong></label>
+                        <input type="file" name="imageFile" class="form-control" id="imageFile"/>
+                    </div>
+                    <div class="mb-3">
+                        <label for="Image" class="form-label"><strong>Current Image:</strong></label>
+                        <input type="text" name="Image" class="form-control" id="Image" value="<?= $item->Image ?>" readonly/>
+                    </div>
+
+
+
+
                     <input type="hidden" name="Id" value="<?= $item->Id ?>"/>
                     <input type="hidden" name="modelType" value="<?= $modelType ?>"/> 
                     <div class="text-center">

@@ -260,21 +260,40 @@ class Admin extends BaseController
                     $date_time = $this->request->getPost('date_time');
                     $html_content = $this->request->getPost('html_content');
                     $modelType = $this->request->getPost('modelType'); // Get the model type from the POST data
+                    $summary = $this->request->getPost('summary'); 
+                    $tags = $this->request->getPost('tags');
+                    $category =  $this->request->getPost('category');
+                    $Image = $this->request->getPost('Image'); //current image url as a default 
             
                     $data = [
                         'title' => $title,
                         'date_time' => $date_time,
                         'html_content' => $html_content,
+                        'summary' => $summary,
+                        'tags'=> $tags, 
+                        'category' =>$category, 
+                        'Image' => $Image
+
                     ];
-            
-                    // Update using the specified model
-                    if ($modelType === 'kathimerini') {
-                        $item = $this->KathimeriniModel->update($Id, $data);
-                    } elseif ($modelType === 'naftemporiki') {
-                        $item = $this->NaftemporikiModel->update($Id, $data);
-                    } else {
-                        throw new \Exception("Invalid model type specified");
-                    }
+
+                     // Έλεγχος αν υπάρχει νέα εικόνα και αν έχει ανέβει
+                     $imageFile = $this->request->getFile('imageFile');
+                      if ($imageFile && $imageFile->isValid() && !$imageFile->hasMoved()) {
+                         $newImageName = $imageFile->getRandomName();
+                         $imageFile->move(ROOTPATH . 'public/uploads', $newImageName);
+                         $data['Image'] = '/uploads/' . $newImageName;  // ενημέρωση του ονόματος της εικόνας στη βάση δεδομένων
+                        } else {
+                          $data['Image'] = $Image;  // Κρατάμε την παλιά εικόνα αν δεν ανεβάστηκε νέα
+                        }
+
+                       // Update using the specified model
+                       if ($modelType === 'kathimerini') {
+                       $item = $this->KathimeriniModel->update($Id, $data);
+                       } elseif ($modelType === 'naftemporiki') {
+                          $item = $this->NaftemporikiModel->update($Id, $data);
+                       } else {
+                          throw new \Exception("Invalid model type specified");
+                     }
             
                     if ($item) {
                         session()->setFlashdata('success', 'News has been updated successfully');
