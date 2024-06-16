@@ -34,7 +34,7 @@ Copy the `env` file to create a new `.env` file:
 cp env .env
 ```
 
--Edit the env file to set your database credentials ant the base URL for the applications 
+-Edit the env file to set your database credentials ant the base URL for the application
 ``` 
 app.baseURL = 'http://localhost/NewsAggregator'
 database.default.hostname = localhost
