@@ -7,14 +7,42 @@
     <link href="<?= base_url('css/style.css'); ?>" rel="stylesheet">
     <script src="https://kit.fontawesome.com/96b895edc6.js" crossorigin="anonymous"></script>
     <title>Admin Dashboard</title>
+    <style>
+        .navbar-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar-brand img {
+    max-height: 40px; /* Adjust as needed */
+    margin-right: 10px; /* Space between the logo and site name */
+}
+
+.container-fluid.px-0 {
+    padding-left: 0;
+    padding-right: 0;
+}
+        </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#"><i class="fa-solid fa-bars" style="color: #000000;"></i> News Dashboard</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+        <div class="navbar-center mx-auto">
+                    <a class="navbar-brand" href="<?= base_url("admin/dashboard") ?>">
+                        <img src="<?= base_url('images/logo.png') ?>" alt="Logo" height="40">
+                        <span>News Aggregator</span>
+                    </a>
+                </div>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                 <li class="nav-item">

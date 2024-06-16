@@ -8,9 +8,58 @@
     <link href="<?= base_url('css/style.css'); ?>" rel="stylesheet">
     <title>Create News</title>
     <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+    <style>
+  
+  .navbar {
+    padding: 0; /* Remove any padding from the navbar */
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%; /* Ensure it takes the full height of the navbar */
+    padding: 0; /* Remove any padding */
+    margin: 0; /* Remove any margin */
+}
+
+.navbar-brand img {
+  
+    margin-right: 10px; /* Space between the logo and site name */
+}
+
+.navbar-logo {
+    max-height: 100%; /* Ensure the logo takes the full height of the navbar */
+    margin-right: 5px; /* Space between the logo and site name */
+}
+        </style>
 </head>
 
+
+
 <body>
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+    <div>
+            <a href="<?= base_url("admin/dashboard") ?>">
+                <i class="fa-solid fa-circle-left fa-2xl" style="color: #ffffff;"></i>
+            </a>
+        </div>
+        <a class="navbar-brand mx-auto" href="<?= base_url("admin/dashboard") ?>">
+            <img src="<?= base_url('images/logo.png') ?>" alt="Logo" height="40">
+            <span>News Aggregator</span>
+        </a>
+   
+</div>
+</nav>
+
+
+
+
+
     <div class="container mt-3">
         <?php if (!empty(session()->getFlashdata('success'))): ?>
             <div class="alert alert-success w-auto mx-auto">
