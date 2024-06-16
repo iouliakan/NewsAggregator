@@ -150,4 +150,4 @@ public/uploads/
 #encrypt password for admin
 app/Views/encrypt_password.php
 
-
+app/Config/Database.php
