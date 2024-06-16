@@ -43,7 +43,7 @@ database.default.password = your_db_password
 database.default.DBDriver = MySQLi
 ```
 
--Database Setup 
+#Database Setup 
 -Create a new database in MYSQL or MariaDB named 'newsaggregator' 
 -Run the database migrations and seeders to set up the initial database schema and data: 
 ``` 
@@ -52,7 +52,7 @@ php spark db:seed AdminSeeder
 php spark db:seed NewsSeeder
 ```
 
--Running the Application 
+#Running the Application 
 -Start your local server (e.g., XAMPP).
 -Ensure your web server points to the public directory of the project.
 -Open your web browser and navigate to http://localhost/NewsAggregator.
