@@ -105,17 +105,17 @@ php spark db:seed NewsSeeder
 
 **Admin Credentials**
 -After running the seeders, you can log in as an admin with the following credentials:
-**
+
 Username: admin, 
 Password: password123
-**
 
-###Security Considerations
+
+**Security Considerations**
 -Make sure to never expose your .env file or any sensitive configuration files.
 -Regularly update your dependencies.
 -Review the CodeIgniter security guide for best practices.
 
-###Contribution Guidelines
+**Contribution Guidelines**
 If you would like to contribute to this project, please follow the standard GitHub workflow for forking, branching, and pull requests.
 
 -Fork the repository.
