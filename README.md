@@ -52,16 +52,26 @@ php spark migrate
 php spark db:seed AdminSeeder
 php spark db:seed NewsSeeder
 ```
+
+**Start the Development Server**
+```
+php spark serve
+```
+
+**Access the Application**
+Open your web browser and navigate to `http://localhost:8080`
+
+
 **To access the admin functions, you'll need to log in with the admin credentials. The default admin credentials can be found in the AdminSeeder class. For security reasons, make sure to change these credentials after the initial setup.**
 
 **Server Requirements**
 PHP version 8.1 or higher is required, with the following extensions installed:
 
-intl
-mbstring
-json (enabled by default - don't turn it off)
-mysqlnd (if you plan to use MySQL)
-libcurl (if you plan to use the HTTP\CURLRequest library)
+-intl
+-mbstring
+-json (enabled by default - don't turn it off)
+-mysqlnd (if you plan to use MySQL)
+-libcurl (if you plan to use the HTTP\CURLRequest library)
 
 **Note on PHP Versions**
 The end of life date for PHP 7.4 was November 28, 2022. The end of life date for PHP 8.0 was November 26, 2023. If you are still using PHP 7.4 or 8.0, you should upgrade immediately. The end of life date for PHP 8.1 will be November 25, 2024.
