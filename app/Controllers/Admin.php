@@ -312,6 +312,7 @@ class Admin extends BaseController
                           $category =  $this->request->getPost('category'); 
                           $summary =  $this->request->getPost('summary'); 
                           $tags =  $this->request->getPost('tags'); 
+                          $Image = $this->request->getPost('Image'); 
                           
                           $modelType = $this->request->getPost('modelType'); // Get the model type from the POST data
 
@@ -321,19 +322,32 @@ class Admin extends BaseController
                                 'html_content' => $html_content,
                                 'category'=> $category,
                                 'summary' => $summary, 
-                                'tags' => $tags
+                                'tags' => $tags, 
+                                'Image' => $Image
 
 
                          ];
 
-                        // Save using the specified model
-                       if ($modelType === 'kathimerini') {
-                            $item = $this->KathimeriniModel->insert($data);
-                        } elseif ($modelType === 'naftemporiki') {
-                           $item = $this->NaftemporikiModel->insert($data);
-                        } else {
-                            throw new \Exception("Invalid model type specified");
-                        }
+                   
+
+                     $imageFile = $this->request->getFile('imageFile');
+                     if ($imageFile && $imageFile->isValid() && !$imageFile->hasMoved()) {
+                        $newImageName = $imageFile->getRandomName();
+                        $imageFile->move(ROOTPATH . 'public/uploads', $newImageName);
+                        $data['Image'] = '/uploads/' . $newImageName;  // ενημέρωση του ονόματος της εικόνας στη βάση δεδομένων
+                     }
+
+                            // Save using the specified model
+                            if ($modelType === 'kathimerini') {
+                                $item = $this->KathimeriniModel->insert($data);
+                            } elseif ($modelType === 'naftemporiki') {
+                               $item = $this->NaftemporikiModel->insert($data);
+                            } else {
+                                throw new \Exception("Invalid model type specified");
+                            }
+
+
+
 
                        if ($item) {
                          session()->setFlashdata('success', 'News has been created successfully');

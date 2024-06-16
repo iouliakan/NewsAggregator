@@ -40,7 +40,8 @@ class Home extends BaseController
         'nature' => ['nature', 'Αγρια Φύση'],
         'health' => ['health', 'Υγεία'],
         'museums' => ['museums', 'Μουσεία'],
-        'cinema' => ['cinema', 'movies', 'Σινεμά']
+        'cinema' => ['cinema', 'movies', 'Σινεμά'], 
+        'cooking' => ['k']
     ];
 
     public function __construct()

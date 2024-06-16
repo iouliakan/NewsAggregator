@@ -7,6 +7,7 @@
     <script src="https://kit.fontawesome.com/96b895edc6.js" crossorigin="anonymous"></script>
     <link href="<?= base_url('css/style.css'); ?>" rel="stylesheet">
     <title>Create News</title>
+    <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
 </head>
 
 <body>
@@ -22,7 +23,7 @@
         <?php endif; ?>
     </div>
 
-    <form method="post" action="<?= base_url('admin/createNews') ?>">
+    <form method="post" action="<?= base_url('admin/createNews') ?>" enctype="multipart/form-data">
         <div class="container mt-5 mb-5">
             <div class="border border-5 p-3">
                 <div class="border-bottom pb-3 mb-3">
@@ -46,6 +47,9 @@
                 <div class="mb-3">
                     <label for="html_content" class="form-label"><strong>Content:</strong></label>
                     <textarea name="html_content" class="form-control" id="html_content" rows="10" ></textarea>
+                    <script>
+                            CKEDITOR.replace('html_content');
+                        </script>
                 </div>
 
                 <div class="mb-3">
@@ -63,6 +67,18 @@
                     <label for="tags" class="form-label"><strong>Tags:</strong></label>
                     <textarea name="tags" class="form-control" id="tags" rows="1" ></textarea>
                 </div>
+
+
+                <div class="mb-3">
+                        <label for="imageFile" class="form-label"><strong>Image:</strong></label>
+                        <input type="file" name="imageFile" class="form-control" id="imageFile"/>
+                    </div>
+                    
+
+
+
+
+
                 <div class="text-center">
                     <button type="submit" class="btn btn-secondary">Create</button>
                 </div>
