@@ -153,3 +153,12 @@ app/Views/encrypt_password.php
 app/Config/Database.php
 
 .env.test
+
+
+/tests/_support/Database/Migrations/2020-02-22-222222_example_migration.php
+/tests/_support/Database/Seeds/ExampleSeeder.php
+/tests/_support/Libraries/ConfigReader.php
+/tests/_support/Models/ExampleModel.php
+/tests/database/ExampleDatabaseTest.php
+/tests/session/ExampleSessionTest.php
+/tests/unit/HealthTest.php
