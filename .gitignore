@@ -124,3 +124,29 @@ nb-configuration.xml
 
 /results/
 /phpunit*.xml
+
+#-------------------------
+# Custom Additions
+#-------------------------
+
+# Cache and session files
+writable/cache/
+writable/session/
+writable/debugbar/
+
+# Composer dependencies
+vendor/
+
+# Node dependencies (if using Node.js for assets)
+node_modules/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# CodeIgniter specific files
+public/uploads/
+
+#encrypt password for admin
+views/encrypt_password.php
+
