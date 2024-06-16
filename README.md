@@ -43,7 +43,7 @@ database.default.password = your_db_password
 database.default.DBDriver = MySQLi
 ```
 
-#Database Setup 
+**Database Setup** 
 -Create a new database in MYSQL or MariaDB named 'newsaggregator' 
 -Run the database migrations and seeders to set up the initial database schema and data: 
 ``` 
@@ -52,7 +52,7 @@ php spark db:seed AdminSeeder
 php spark db:seed NewsSeeder
 ```
 
-#Running the Application 
+**Running the Application** 
 -Start your local server (e.g., XAMPP).
 -Ensure your web server points to the public directory of the project.
 -Open your web browser and navigate to http://localhost/NewsAggregator.
@@ -88,7 +88,7 @@ Additionally, make sure that the following extensions are enabled in your PHP:
 -libcurl if you plan to use the HTTP\CURLRequest library
 
 
-###Usage Instructions
+**Usage Instructions**
 -Clone the repository.
 -Run composer install to install all dependencies.
 -Copy the env file to .env and update your environment settings.
@@ -101,13 +101,14 @@ php spark db:seed NewsSeeder
 ```
 
 -Start your server and point to the public directory.
--Access the application at http://localhost/NewsAggregator.
+-Access the application at ** http://localhost/NewsAggregator. **
 
-###Admin Credentials
+**Admin Credentials**
 -After running the seeders, you can log in as an admin with the following credentials:
-
-Username: admin
+**
+Username: admin, 
 Password: password123
+**
 
 ###Security Considerations
 -Make sure to never expose your .env file or any sensitive configuration files.
