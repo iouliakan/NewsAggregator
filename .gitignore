@@ -151,3 +151,5 @@ public/uploads/
 app/Views/encrypt_password.php
 
 app/Config/Database.php
+
+.env.test
