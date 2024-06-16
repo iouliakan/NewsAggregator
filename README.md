@@ -19,34 +19,38 @@ You can read the user guide corresponding to the latest version of the framework
 
 - 
 ### Clone the Repository
-'''bash 
+``` 
 git clone https://github.com/yourusername/NewsAggregator.git
 cd NewsAggregator
-
+```
 ###Install Dependencies
-'''bash 
+```
 composer install 
+````
 
 ###Environment Setup
-'''bash 
+```
 cp env .env
+```
 
 ###Edit the env file to set your database credentials ant the base URL for the applications 
-'''bash 
+``` 
 app.baseURL = 'http://localhost/NewsAggregator'
 database.default.hostname = localhost
 database.default.database = newsaggregator
 database.default.username = your_db_username
 database.default.password = your_db_password
 database.default.DBDriver = MySQLi
+```
 
 ###Database Setup 
-# Create a new database in MYSQL or MariaDB named 'newsaggregator' 
-#Run the database migrations and seeders to set up the initial database schema and data: 
-'''bash 
+### Create a new database in MYSQL or MariaDB named 'newsaggregator' 
+###Run the database migrations and seeders to set up the initial database schema and data: 
+``` 
 php spark migrate
 php spark db:seed AdminSeeder
 php spark db:seed NewsSeeder
+```
 
 ###Running the Application 
 #Start your local server (e.g., XAMPP).
