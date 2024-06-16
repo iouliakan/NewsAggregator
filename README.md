@@ -43,7 +43,7 @@ database.default.password = your_db_password
 database.default.DBDriver = MySQLi
 ```
 
-###Database Setup 
+-Database Setup 
 -Create a new database in MYSQL or MariaDB named 'newsaggregator' 
 -Run the database migrations and seeders to set up the initial database schema and data: 
 ``` 
@@ -52,14 +52,14 @@ php spark db:seed AdminSeeder
 php spark db:seed NewsSeeder
 ```
 
-###Running the Application 
+-Running the Application 
 -Start your local server (e.g., XAMPP).
 -Ensure your web server points to the public directory of the project.
 -Open your web browser and navigate to http://localhost/NewsAggregator.
 
 
 
-###Important Change with index.php
+-Important Change with index.php
 
 index.php is no longer in the root of the project! It has been moved inside the public folder, for better security and separation of components.
 
@@ -67,7 +67,7 @@ This means that you should configure your web server to "point" to your project'
 
 Please read the user guide for a better explanation of how CI4 works!
 
-###Repository Management
+-Repository Management
 
 We use GitHub issues, in our main repository, to track BUGS and to track approved DEVELOPMENT work packages. We use our forum to provide SUPPORT and to discuss FEATURE REQUESTS.
 
