@@ -92,9 +92,9 @@ We use GitHub issues, in our main repository, to track BUGS and to track approve
 
 This repository is a "distribution" one, built by our release preparation script. Problems with it can be raised on our forum, or as issues in the main repository.
 
-###Contributing 
+**Contributing** 
 If you would like to contribute, please fork the repository and use a feature branch. Pull requests are warmly welcome.
 
 
-###License 
+**License** 
 This project is open-source and available under the MIT License.
