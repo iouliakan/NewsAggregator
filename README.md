@@ -54,3 +54,24 @@ php spark db:seed NewsSeeder
 ```
 **To access the admin functions, you'll need to log in with the admin credentials. The default admin credentials can be found in the AdminSeeder class. For security reasons, make sure to change these credentials after the initial setup.**
 
+**Server Requirements**
+PHP version 8.1 or higher is required, with the following extensions installed:
+
+intl
+mbstring
+json (enabled by default - don't turn it off)
+mysqlnd (if you plan to use MySQL)
+libcurl (if you plan to use the HTTP\CURLRequest library)
+
+**Note on PHP Versions**
+The end of life date for PHP 7.4 was November 28, 2022. The end of life date for PHP 8.0 was November 26, 2023. If you are still using PHP 7.4 or 8.0, you should upgrade immediately. The end of life date for PHP 8.1 will be November 25, 2024.
+
+
+**Security Considerations**
+Ensure your .env file is not committed to your repository by adding it to your .gitignore. Sensitive information such as database credentials and secret keys should not be exposed in your version control system.
+
+**Repository Management**
+We use GitHub issues, in our main repository, to track BUGS and to track approved DEVELOPMENT work packages. We use our forum to provide SUPPORT and to discuss FEATURE REQUESTS.
+
+This repository is a "distribution" one, built by our release preparation script. Problems with it can be raised on our forum, or as issues in the main repository.
+
