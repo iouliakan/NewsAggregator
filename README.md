@@ -23,17 +23,17 @@ You can read the user guide corresponding to the latest version of the framework
 git clone https://github.com/yourusername/NewsAggregator.git
 cd NewsAggregator
 ```
-###Install Dependencies
+-Install Dependencies
 ```
 composer install 
 ````
 
-###Environment Setup
+-Environment Setup
 ```
 cp env .env
 ```
 
-###Edit the env file to set your database credentials ant the base URL for the applications 
+-Edit the env file to set your database credentials ant the base URL for the applications 
 ``` 
 app.baseURL = 'http://localhost/NewsAggregator'
 database.default.hostname = localhost
@@ -44,8 +44,8 @@ database.default.DBDriver = MySQLi
 ```
 
 ###Database Setup 
-### Create a new database in MYSQL or MariaDB named 'newsaggregator' 
-###Run the database migrations and seeders to set up the initial database schema and data: 
+-Create a new database in MYSQL or MariaDB named 'newsaggregator' 
+-Run the database migrations and seeders to set up the initial database schema and data: 
 ``` 
 php spark migrate
 php spark db:seed AdminSeeder
@@ -53,9 +53,9 @@ php spark db:seed NewsSeeder
 ```
 
 ###Running the Application 
-#Start your local server (e.g., XAMPP).
-#Ensure your web server points to the public directory of the project.
-#Open your web browser and navigate to http://localhost/NewsAggregator.
+-Start your local server (e.g., XAMPP).
+-Ensure your web server points to the public directory of the project.
+-Open your web browser and navigate to http://localhost/NewsAggregator.
 
 
 
@@ -83,44 +83,45 @@ The end of life date for PHP 7.4 was November 28, 2022. The end of life date for
 
 Additionally, make sure that the following extensions are enabled in your PHP:
 
-json (enabled by default - don't turn it off)
-mysqlnd if you plan to use MySQL
-libcurl if you plan to use the HTTP\CURLRequest library
+-json (enabled by default - don't turn it off)
+-mysqlnd if you plan to use MySQL
+-libcurl if you plan to use the HTTP\CURLRequest library
 
 
 ###Usage Instructions
-Clone the repository.
-Run composer install to install all dependencies.
-Copy the env file to .env and update your environment settings.
-Create a database named newsaggregator and update the .env file with your database credentials.
-Run the migrations and seeders to set up your database:
-'''bash 
+-Clone the repository.
+-Run composer install to install all dependencies.
+-Copy the env file to .env and update your environment settings.
+-Create a database named newsaggregator and update the .env file with your database credentials.
+-Run the migrations and seeders to set up your database:
+```
 php spark migrate
 php spark db:seed AdminSeeder
 php spark db:seed NewsSeeder
+```
 
-Start your server and point to the public directory.
-Access the application at http://localhost/NewsAggregator.
+-Start your server and point to the public directory.
+-Access the application at http://localhost/NewsAggregator.
 
 ###Admin Credentials
-After running the seeders, you can log in as an admin with the following credentials:
+-After running the seeders, you can log in as an admin with the following credentials:
 
 Username: admin
 Password: password123
 
 ###Security Considerations
-Make sure to never expose your .env file or any sensitive configuration files.
-Regularly update your dependencies.
-Review the CodeIgniter security guide for best practices.
+-Make sure to never expose your .env file or any sensitive configuration files.
+-Regularly update your dependencies.
+-Review the CodeIgniter security guide for best practices.
 
 ###Contribution Guidelines
 If you would like to contribute to this project, please follow the standard GitHub workflow for forking, branching, and pull requests.
 
-Fork the repository.
-Create a new branch: git checkout -b my-feature-branch.
-Make your changes and commit them: git commit -m 'Add some feature'.
-Push to the branch: git push origin my-feature-branch.
-Submit a pull request.
+-Fork the repository.
+-Create a new branch: git checkout -b my-feature-branch.
+-Make your changes and commit them: git commit -m 'Add some feature'.
+-Push to the branch: git push origin my-feature-branch.
+-Submit a pull request.
 
 License
 This project is licensed under the MIT License - see the LICENSE file for details.
