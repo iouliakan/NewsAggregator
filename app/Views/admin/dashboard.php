@@ -24,7 +24,7 @@
 }
 
 .navbar-brand img {
-    max-height: 40px; /* Adjust as needed */
+    max-height: 40px; 
     margin-right: 10px; /* Space between the logo and site name */
 }
 
@@ -101,7 +101,7 @@
     </div>
 </div>
 
-<!-- Add this script at the end of the body -->
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Set the form action when the modal is shown

@@ -24,7 +24,7 @@
 }
 
 .navbar-brand img {
-    max-height: 40px; /* Adjust as needed */
+    max-height: 40px; 
     margin-right: 10px; /* Space between the logo and site name */
 }
 

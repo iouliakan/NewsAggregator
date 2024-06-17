@@ -11,16 +11,16 @@
     <style>
   
   .navbar {
-    padding: 0; /* Remove any padding from the navbar */
+    padding: 0; 
 }
 
 .navbar-brand {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%; /* Ensure it takes the full height of the navbar */
-    padding: 0; /* Remove any padding */
-    margin: 0; /* Remove any margin */
+    height: 100%; 
+    padding: 0; 
+    margin: 0; 
 }
 
 .navbar-brand img {
@@ -29,7 +29,7 @@
 }
 
 .navbar-logo {
-    max-height: 100%; /* Ensure the logo takes the full height of the navbar */
+    max-height: 100%; /*  the logo takes the full height of the navbar */
     margin-right: 5px; /* Space between the logo and site name */
 }
         </style>

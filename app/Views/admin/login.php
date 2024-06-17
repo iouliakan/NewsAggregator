@@ -32,9 +32,9 @@
     }
     .login-form-container {
         position: absolute;
-        top: 70%; /* Adjust the value to center vertically */
-        left: 50%; /* Adjust the value to center horizontally */
-        width: 45%; /* Adjust the value according to the background square size */
+        top: 70%; /* center vertically */
+        left: 50%; /* center horizontally */
+        width: 45%; 
         height: 50%;
         max-width: 550px;
         padding: 20px 20px 40px 20px;
@@ -50,9 +50,9 @@
     
 
     .card-body {
-        padding-top: 60px; /* Adjust this padding to move the form contents down */
+        padding-top: 60px; 
         border-radius: 55px;
-        /* border: 2px solid #0c2854; */
+        
     
     }
 
@@ -119,7 +119,7 @@
 }
 
 .navbar-brand img {
-    max-height: 60px; /* Adjust as needed for larger logo */
+    max-height: 60px; /*  for larger logo */
     margin-right: 10px; /* Space between the logo and site name */
 }
 

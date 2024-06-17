@@ -23,7 +23,7 @@
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    width: auto; /* Ensure the container is the full width */
+    width: auto; /*  the container is the full width */
 }
 
 .navbar-brand {
@@ -34,7 +34,7 @@
 }
 
 .navbar-brand img {
-    max-height: 60px; /* Adjust as needed for larger logo */
+    max-height: 60px; /* for larger logo */
     margin-right: 10px; /* Space between the logo and site name */
 }
 

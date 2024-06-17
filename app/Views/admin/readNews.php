@@ -19,7 +19,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%; /* Ensure it takes the full height of the navbar */
+    height: 100%; /*  it takes the full height of the navbar */
     padding: 0; /* Remove any padding */
     margin: 0; /* Remove any margin */
 }
@@ -30,7 +30,7 @@
 }
 
 .navbar-logo {
-    max-height: 100%; /* Ensure the logo takes the full height of the navbar */
+    max-height: 100%; /* logo takes the full height of the navbar */
     margin-right: 5px; /* Space between the logo and site name */
 }
         </style>
