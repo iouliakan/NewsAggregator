@@ -56,6 +56,12 @@ class NaftemporikiModel extends Model
     {
         $exists = $this->where('title', $newsData['title'])
                        ->where('url', $newsData['url'])
+                       ->where('date_time', $newsData['date_time'])
+                       ->where('category', $newsData['category'])
+                       ->where('Image', $newsData['Image'])
+                       ->where('summary', $newsData['summary'])
+                       ->where('tags', $newsData['tags'])
+
                        ->first(); 
 
         if (!$exists) {

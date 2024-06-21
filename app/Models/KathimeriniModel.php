@@ -53,8 +53,14 @@ class KathimeriniModel extends Model
     public function saveNews($newsData)
     {
         $exists = $this->where('title', $newsData['title'])
-                       ->where('url', $newsData['url'])
-                       ->first(); 
+        ->where('url', $newsData['url'])
+        ->where('date_time', $newsData['date_time'])
+        ->where('category', $newsData['category'])
+        ->where('Image', $newsData['Image'])
+        ->where('summary', $newsData['summary'])
+        ->where('tags', $newsData['tags'])
+
+        ->first(); 
 
         if (!$exists) {
         // If the news item does not exist, save it to the database
