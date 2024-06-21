@@ -32,6 +32,16 @@
     padding-left: 0;
     padding-right: 0;
 }
+
+.card-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-body .btn-primary {
+            align-self: center;
+        }
         </style>
     </head>
 
@@ -86,7 +96,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title"><?= esc($news['title']) ?></h5>
                                     <p class="card-text"><?= esc($category) ?></p>
-                                    <a href="<?= base_url('read/' . $news['Id']) ?>" class="btn btn-primary">Read more</a>
+                                    <a href="<?= base_url('read/' . $news['Id']) ?>" class="btn btn-primary"> <i class="fa-brands fa-readme" style="color: #00000;"></i> Read more</a>
                                 </div>
                             </div>
                         </div>

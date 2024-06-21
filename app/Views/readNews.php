@@ -5,44 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?= base_url('css/style.css'); ?>" rel="stylesheet">
+    <link href="<?= base_url('css/readNews.css'); ?>" rel="stylesheet">
     <script src="https://kit.fontawesome.com/96b895edc6.js" crossorigin="anonymous"></script>
     <title>Read News</title>
 
-    <style>
-        .navbar {
-    overflow: hidden; /* Prevent overflow */
-    padding: 5px 0; /* Add vertical padding for more space */
-    height: 65px; /* Increase the height of the navbar */
-    background-color:#346a88 !important;
-}
-
-.navbar-center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: auto; /*  the container is the full width */
-}
-
-.navbar-brand {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    white-space: nowrap; /* Prevent the text from wrapping */
-}
-
-.navbar-brand img {
-    max-height: 60px; /* for larger logo */
-    margin-right: 10px; /* Space between the logo and site name */
-}
-
-.container-fluid.px-0 {
-    padding-left: 0;
-    padding-right: 0;
-}
-    </style>
 </head>
 <body>
 
@@ -65,8 +31,8 @@
 
 <div class="container mt-5 mb-5">
         <div class="p-2">
-            <div class="d-flex flex-column align-items-center pb-2">
-                <h5>News: <?= htmlspecialchars($newsItem['title']); ?></h5>
+            <div class="d-flex flex-column align-items-center pb-2 three">
+                <h1><?= htmlspecialchars($newsItem['title']); ?></h1>
                 
             </div>
 
@@ -84,10 +50,56 @@
                     <div class="border border-dark pt-2 pb-5 pl-5 pr-5  mb-3">
                         <?= $newsItem['html_content']; ?>
                     </div>
-                    
-                </div>
+          
+                    </div>
             </div>
         </div>
+</div>
+
+<!-- Sidebar for latest news -->
+<div class="latest-news">
+  <h3>Latest News</h3>
+  <?php if (isset($latestNews) && !empty($latestNews)): ?>
+    <?php foreach ($latestNews as $news): ?>
+      <div class="latest-news-item mb-4">
+        <div class="card border-dark">
+          <img src="<?= esc($news['Image']) ?>" class="card-img-top" alt="<?= esc($news['title']) ?>">
+          <div class="card-body text-center">
+            <h5 class="card-title"><?= esc($news['title']) ?></h5>
+            <a href="<?= base_url('read/' . $news['Id']) ?>" class="btn btn-primary btn-sm">Read more</a>
+          </div>
+        </div>
+      </div>
+    <?php endforeach; ?>
+  <?php else: ?>
+    <p>No latest news found.</p>
+  <?php endif; ?>
+</div>
+
+<!-- Sidebar for related news -->
+<div class="related-news">
+          <h3>Related News</h3>
+          <?php if (isset($relatedNews) && !empty($relatedNews)): ?>
+            <?php foreach ($relatedNews as $news): ?>
+              <div class="related-news-item mb-4">
+                <div class="card border-dark">
+                  <img src="<?= esc($news['Image']) ?>" class="card-img-top" alt="<?= esc($news['title']) ?>">
+                  <div class="card-body text-center">
+                    <h5 class="card-title"><?= esc($news['title']) ?></h5>
+                    <a href="<?= base_url('read/' . $news['Id']) ?>" class="btn btn-primary btn-sm">Read more</a>
+                  </div>
+                </div>
+              </div>
+            <?php endforeach; ?>
+          <?php else: ?>
+            <p>No related news found.</p>
+          <?php endif; ?>
+        </div>
+      </div>
     </div>
+  </div>
+</div>
+
+
 </body>
 </html>

@@ -105,5 +105,8 @@ class KathimeriniModel extends Model
     }
 
    
-    
+    public function getLatestNews($limit = 5)
+{
+    return $this->orderBy('date_time', 'desc')->findAll($limit);
+}
 }

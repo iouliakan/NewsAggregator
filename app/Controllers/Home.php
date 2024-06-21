@@ -75,6 +75,9 @@ class Home extends BaseController
         // Group news by category
         $groupedNews = $this->groupNewsByCategory($allNews);
 
+         
+
+
         // Pass the grouped news and category mapping to the view
         return view('mainPage', [
             'groupedNews' => $groupedNews,
@@ -120,6 +123,43 @@ class Home extends BaseController
     }
 
 
+    private function getLatestNews($limit = 5)
+{
+    $newsModel1 = new NaftemporikiModel();
+    $newsModel2 = new KathimeriniModel();
+
+    // Fetch the latest news from both models
+    $latestNewsNaftemporiki = $newsModel1->orderBy('date_time', 'desc')->findAll($limit);
+    $latestNewsKathimerini = $newsModel2->orderBy('date_time', 'desc')->findAll($limit);
+
+    // Combine news from both sources and limit to $limit items
+    $allLatestNews = array_merge($latestNewsNaftemporiki, $latestNewsKathimerini);
+    usort($allLatestNews, function($a, $b) {
+        return strtotime($b['date_time']) - strtotime($a['date_time']);
+    });
+
+    return array_slice($allLatestNews, 0, $limit);
+}
+
+
+    private function getRelatedNews($category, $currentNewsId,$limit=5)
+{
+    $newsModel1 = new NaftemporikiModel();
+    $newsModel2 = new KathimeriniModel();
+
+    // Fetch related news from both models excluding the current news
+    $relatedNewsNaftemporiki = $newsModel1->where('category', $category)->where('Id !=', $currentNewsId)->orderBy('date_time', 'desc')->findAll(5);
+    $relatedNewsKathimerini = $newsModel2->where('category', $category)->where('Id !=', $currentNewsId)->orderBy('date_time', 'desc')->findAll(5);
+
+    // Combine news from both sources and limit to 5 items
+    $allRelatedNews = array_merge($relatedNewsNaftemporiki, $relatedNewsKathimerini);
+    usort($allRelatedNews, function($a, $b) {
+        return strtotime($b['date_time']) - strtotime($a['date_time']);
+    });
+
+    return array_slice($allRelatedNews, 0, $limit);
+}
+
     public function read($Id)
     {
         // Fetch the news item using the ID
@@ -136,9 +176,29 @@ class Home extends BaseController
             throw new \CodeIgniter\Exceptions\PageNotFoundException('News Item Not Found');
         }
 
-        // Load the view and pass the news item data
-        return view('readNews', ['newsItem' => $newsItem]);
+      // Check if the news item exists
+    if (!$newsItem) {
+        throw new \CodeIgniter\Exceptions\PageNotFoundException('News Item Not Found');
     }
+
+    // Fetch the latest 5 news items
+    $latestNews = $this->getLatestNews(5);
+
+    // Fetch related news items
+    $relatedNews = $this->getRelatedNews($newsItem['category'], $Id, 5);
+
+    // Load the view and pass the news item data, latest news, and related news
+    return view('readNews', [
+        'newsItem' => $newsItem,
+        'latestNews' => $latestNews,
+        'relatedNews' => $relatedNews
+    ]);
+
+
+
+}
+
+
 
 
 

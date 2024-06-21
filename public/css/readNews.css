@@ -1,0 +1,197 @@
+.navbar {
+    overflow: hidden; /* Prevent overflow */
+    padding: 5px 0; /* Add vertical padding for more space */
+    height: 65px; /* Increase the height of the navbar */
+    background-color:#346a88 !important;
+}
+
+.navbar-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto; /*  the container is the full width */
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap; /* Prevent the text from wrapping */
+}
+
+.navbar-brand img {
+    max-height: 60px; /* for larger logo */
+    margin-right: 10px; /* Space between the logo and site name */
+}
+
+.container-fluid.px-0 {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+
+/* For the title: https://codepen.io/vedadesigns/pen/GPxYZg */
+.three h1 {
+    font-size: 28px;
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 1.5em;
+    padding-bottom: 15px;
+    position: relative;
+}
+.three h1:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 5px;
+    width: 55px;
+    background-color: #111;
+}
+.three h1:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 2px;
+    height: 1px;
+    width: 95%;
+    max-width: 255px;
+    background-color: #333;
+}
+
+.latest-news {
+    position: fixed;
+    top: 100px; /*  move the sidebar lower */
+    left: 0;
+    width: 300px; 
+    margin-left: 20px; 
+    margin-top: 140px; /*  margin-top to move the sidebar lower */
+}
+
+.latest-news img {
+    width: 100px;
+    height: auto;
+}
+
+.latest-news .card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px; /* Add padding inside the card */
+    background-color: #9db2bf; 
+    
+}
+
+.latest-news .card-body {
+    flex: 1;
+    padding: 0 10px;
+}
+
+.latest-news h4 {
+    font-size: 1rem;
+}
+
+.latest-news h5 {
+    font-size: 0.875rem;
+    word-wrap: break-word; /* Allow long words to break and wrap onto the next line */
+    word-break: break-all; /* Break words at any character to avoid overflow */
+    max-height: 4.5em; /* Limit the height of the title to three lines */
+    overflow: hidden; /* Hide the overflow text */
+    text-overflow: ellipsis; /* Add ellipsis (...) to indicate overflow text */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+}
+
+.latest-news-item {
+    margin-bottom: 20px; /* Add space between news items */
+}
+
+.card-title {
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    font-size: 0.875rem; /* Adjust font size */
+}
+
+.card img {
+    max-width: 100%; /* Ensure image does not overflow */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.content-wrapper {
+    margin-left: 320px; /*  margin to fit the sidebar */
+}
+
+.card-border-dark .btn-primary .btn-sm {
+    align-self: center;
+}
+
+
+/* For related News */
+.related-news {
+    position: fixed;
+    top: 100px; /*  move the sidebar lower */
+    right: 0;
+    width: 300px; 
+    margin-left: 20px; 
+    margin-top: 140px; /*  margin-top to move the sidebar lower */
+}
+
+.related-news img {
+    width: 100px;
+    height: auto;
+}
+
+.related-news .card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px; /*  padding inside the card */
+    background-color: #9db2bf; 
+    
+}
+
+.related-news .card-body {
+    flex: 1;
+    padding: 0 10px;
+}
+
+.related-news h4 {
+    font-size: 1rem;
+}
+
+.related-news h5 {
+    font-size: 0.875rem;
+    word-wrap: break-word; /* Allow long words to break and wrap onto the next line */
+    word-break: break-all; /* Break words at any character to avoid overflow */
+    max-height: 4.5em; /* Limit the height of the title to three lines */
+    overflow: hidden; /* Hide the overflow text */
+    text-overflow: ellipsis; /* Add ellipsis (...) to indicate overflow text */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+}
+
+.related-news-item {
+    margin-bottom: 20px; /* Add space between news items */
+}
+
+.card-title {
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    font-size: 0.875rem; 
+}
+
+.card img {
+    max-width: 100%; /*  image does not overflow */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.content-wrapper {
+    margin-right: 320px; /*  margin to fit the sidebar */
+}
+
+.card-border-dark .btn-primary .btn-sm {
+    align-self: center;
+}
