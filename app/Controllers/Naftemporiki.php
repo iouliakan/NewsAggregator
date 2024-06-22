@@ -7,7 +7,12 @@ use Symfony\Component\DomCrawler\Crawler;
 use App\Models\NaftemporikiModel;
 
 class Naftemporiki extends BaseController
+
 {
+    // Tools: https://www.php.net/manual/en/ref.pcre.php
+    //https://regex101.com/
+
+
     private function cleanHtmlContent($html_content) {
         // Αφαιρεί τα <script> tags και το περιεχόμενό τους
         $html_content = preg_replace('/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/i', '', $html_content);
@@ -21,9 +26,9 @@ class Naftemporiki extends BaseController
         $html_content = preg_replace('/<nav class="related-links my-5">(.*?)<\/nav>/is', '', $html_content);
         // Αφαιρεί όλες τις εικόνες
         $html_content = preg_replace('/<img\b[^>]*>/i', '', $html_content);
-        
+        //Αφαιρεί τα <a> tags και το περιεχομενο τους
         $html_content = preg_replace('/<a\b[^<]*(?:(?!<\/a>)<[^<]*)*<\/a>/i', '', $html_content);
-        // Μετατρέπει τις HTML οντότητες σε κανονικούς χαρακτήρες
+        // Μετατρέπει τις HTML οντότητες σε κανονικούς χαρακτήρες  (π.χ., &amp;, &lt;, &gt;) σε κανονικούς χαρακτήρες (&, <, >).
         $html_content = html_entity_decode($html_content);
         // Αφαιρεί περιττά κενά στην αρχή και στο τέλος του κειμένου
         $html_content = trim($html_content);

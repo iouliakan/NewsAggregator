@@ -49,6 +49,12 @@
 
                     <div class="border border-dark pt-2 pb-5 pl-5 pr-5  mb-3">
                         <?= $newsItem['html_content']; ?>
+                           
+                        
+                        <div class="d-flex justify-content-center ">
+                        <p class="text-center font-weight-bold custom-date-time">Date/Time: <?= htmlspecialchars($newsItem['date_time']); ?> </p>
+
+                    </div>
                     </div>
           
                     </div>

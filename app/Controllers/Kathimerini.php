@@ -12,6 +12,14 @@ use App\Models\KathimeriniModel;
 
 class Kathimerini extends BaseController
 {
+
+     // Tools: https://www.php.net/manual/en/ref.pcre.php
+    //https://regex101.com/
+
+
+
+
+
     private function cleanHtmlContent($html_content) {
         // Αφαιρεί τα <script> tags και το περιεχόμενό τους
         $html_content = preg_replace('/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/i', '', $html_content);
