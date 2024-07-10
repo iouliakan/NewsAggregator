@@ -24,7 +24,7 @@ You can read the user guide corresponding to the latest version of the framework
 ### Prerequisites
 - PHP version 8.1 or higher
 - Composer
-- MySQL or MariaDB
+- MySQL
 - XAMPP (recommended for local development)
 
 - 
