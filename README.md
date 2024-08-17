@@ -30,7 +30,7 @@ You can read the user guide corresponding to the latest version of the framework
 - 
 ### Clone the Repository
 ``` 
-git clone https://github.com/yourusername/NewsAggregator.git
+git clone https://github.com/iouliakan/NewsAggregator.git
 cd NewsAggregator
 ```
 -Install Dependencies
