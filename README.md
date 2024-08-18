@@ -97,10 +97,6 @@ The end of life date for PHP 7.4 was November 28, 2022. The end of life date for
 **Security Considerations**
 Ensure your .env file is not committed to your repository by adding it to your .gitignore. Sensitive information such as database credentials and secret keys should not be exposed in your version control system.
 
-**Repository Management**
-We use GitHub issues, in our main repository, to track BUGS and to track approved DEVELOPMENT work packages. We use our forum to provide SUPPORT and to discuss FEATURE REQUESTS.
-
-This repository is a "distribution" one, built by our release preparation script. Problems with it can be raised on our forum, or as issues in the main repository.
 
 **Contributing** 
 If you would like to contribute, please fork the repository and use a feature branch. Pull requests are warmly welcome.
