@@ -3,21 +3,13 @@ It's about a News Aggregator Project that brings news from 2 different URLs.
 
 On the main page, unauthenticated users can read the news and select filters located at the top left corner of the page. The system administrators logs in using their credentials and has various functions they can perform on their dashboard page.Specifically, they can start the scrapers to load the news into the database, and consequently onto the main page for unauthenticated users. They can also perform CRUD operations on each news article.Further information to view and run the program, as well as the admin credentials, can be found below.
 
-
-
-
-
-
-
-
-# What is CodeIgniter?
+# CodeIgniter
 CodeIgniter is a PHP full-stack web framework that is light, fast, flexible, and secure. More information can be found at the [official site](https://codeigniter.com).
 
 This repository holds a composer-installable app starter built from the development repository.
 
 More information about the plans for version 4 can be found in [CodeIgniter 4 on the forums](https://forum.codeigniter.com/forum-28.html).
 
-You can read the user guide corresponding to the latest version of the framework [here](https://codeigniter.com/userguide4/).
 
 ## Installation & Setup
 
@@ -27,7 +19,7 @@ You can read the user guide corresponding to the latest version of the framework
 - MySQL
 - XAMPP (recommended for local development)
 
-- 
+  
 ### Clone the Repository
 ``` 
 git clone https://github.com/iouliakan/NewsAggregator.git
