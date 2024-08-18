@@ -54,7 +54,7 @@ database.default.password = your_db_password
 database.default.DBDriver = MySQLi
 ```
 
-**Database Setup** 
+### Database Setup  
 -Create a new database in MYSQL or MariaDB named 'newsaggregator' 
 -Run the database migrations and seeders to set up the initial database schema and data: 
 ``` 
@@ -68,20 +68,20 @@ php spark db:seed NewsSeeder
 php spark serve
 ```
 
-**Access the Application**
+### Access the Application
 Open your web browser and navigate to `http://localhost:8080`
 
 
 **To access the admin functions, you'll need to log in with the admin credentials. The default admin credentials can be found in the AdminSeeder class. For security reasons, make sure to change these credentials after the initial setup.**
 
-**External Libraries Used**
+### External Libraries Used
 The project uses the following external libraries:
 **GuzzleHttp\Client: For making HTTP requests.**
 **Symfony\Component\DomCrawler\Crawler: For parsing HTML.**
 These libraries are included in the `composer.json` file and will be installed automatically when you run `composer install`.
 
 
-**Server Requirements**
+### Server Requirements
 PHP version 8.1 or higher is required, with the following extensions installed:
 
 -intl
@@ -90,15 +90,12 @@ PHP version 8.1 or higher is required, with the following extensions installed:
 -mysqlnd (if you plan to use MySQL)
 -libcurl (if you plan to use the HTTP\CURLRequest library)
 
-**Note on PHP Versions**
-The end of life date for PHP 7.4 was November 28, 2022. The end of life date for PHP 8.0 was November 26, 2023. If you are still using PHP 7.4 or 8.0, you should upgrade immediately. The end of life date for PHP 8.1 will be November 25, 2024.
 
-
-**Security Considerations**
+### Security Considerations 
 Ensure your .env file is not committed to your repository by adding it to your .gitignore. Sensitive information such as database credentials and secret keys should not be exposed in your version control system.
 
 
-**Contributing** 
+### Contributing
 If you would like to contribute, please fork the repository and use a feature branch. Pull requests are warmly welcome.
 
 
