@@ -76,8 +76,8 @@ Open your web browser and navigate to `http://localhost:8080`
 
 ### External Libraries Used
 The project uses the following external libraries:
-**GuzzleHttp\Client: For making HTTP requests.**
-**Symfony\Component\DomCrawler\Crawler: For parsing HTML.**
+- GuzzleHttp\Client: For making HTTP requests.
+- Symfony\Component\DomCrawler\Crawler: For parsing HTML. 
 These libraries are included in the `composer.json` file and will be installed automatically when you run `composer install`.
 
 
