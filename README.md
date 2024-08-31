@@ -91,5 +91,3 @@ Ensure your .env file is not committed to your repository by adding it to your .
 If you would like to contribute, please fork the repository and use a feature branch. Pull requests are warmly welcome.
 
 
-**License** 
-This project is open-source and available under the MIT License.
